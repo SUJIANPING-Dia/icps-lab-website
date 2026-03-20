@@ -1,0 +1,234 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// 定義年份範圍
+const years = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2026 - i);
+
+// 定義計畫類別
+const categories = [
+  { id: "nstc", label: "國科會計畫", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" },
+  { id: "gov", label: "其他政府部門計畫", icon: "M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.312-2.841.873-4.084" },
+  { id: "industry", label: "產學/學研合作與技轉", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
+];
+
+// 計畫資料陣列
+const allProjects = [
+  // 2025 國科會計畫
+  { year: "2025", type: "nstc", name: "專題研究計畫(跨領域研究計畫)，『原民長者口腔健康與促進：從田野到醫療與AI的應用(1/3)』", role: "共同主持人", partner: "國科會", code: "114-2627-M-110-001", duration: "2025.09.01 ~ 2026.08.31", budget: "4,200,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "專題研究計畫(技專校院實務型研究專案計畫（跨域實作型）)，『運用AIR(AI與AR)技術之中外耳病灶識別暨臨床報告自動生成系統之研製』", role: "共同主持人", partner: "國科會", code: "114-2637-8-992-003", duration: "2025.08.01 ~ 2026.07.31", budget: "4,000,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "專題研究計畫(新進人員研究計畫)，『透過穿戴式增強實境眼鏡模擬眼振訊號的檢查，用於急性眩暈病患的檢測(3/3)』", role: "共同主持人", partner: "國科會", code: "112-2314-B-182-073-MY3", duration: "2025.08.01 ~ 2026.07.31", budget: "1,294,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "專題研究計畫(一般研究計畫)，『團體簡易失眠行為療法結合繪本伴讀與數位科技於緩解社區中高齡者睡眠失調之成效: 以行為設計思考進行方案發展』", role: "共同主持人", partner: "國科會", code: "114-2314-B-110-007", duration: "2025.08.01 ~ 2026.07.31", budget: "835,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "國內舉辦國際學術研討會，『2025臺灣消費電子國際研討會 』", role: "計畫主持人", partner: "國科會", code: "114-2916-I-992-002-A1", duration: "2025.07.16 ~ 2025.07.18", budget: "860,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "114年度大專學生研究計畫，『iNoodle－應用於製麵工廠之醬料包AI智慧影像辨識系統』", role: "指導教授", partner: "國科會", code: "114-2813-C-992-068-E", duration: "2025.07.01 ~ 2026.02.28", budget: "58,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "114年度大專學生研究計畫，『SD卡印刷瑕疵AI檢測平台 』", role: "指導教授", partner: "國科會", code: "114-2813-C-992-066", duration: "2025.07.01 ~ 2026.02.28", budget: "58,000", status: "執行中" },
+  { year: "2025", type: "nstc", name: "專題研究計畫(技專校院實務型研究專案計畫（跨域實作型）)，『機構型AI感知照護解決方案暨產學共創共育發展計畫』", role: "共同主持人", partner: "國科會", code: "114-MEA -8-242-001", duration: "2025.04.22 ~ 2025.11.20", budget: "4,110,000", status: "已結案" },
+  { year: "2025", type: "nstc", name: "專題研究計畫(技專校院實務型研究專案計畫（跨域實作型）)，『AI守護力-長照機構智慧照護轉型方案』", role: "共同主持人", partner: "國科會", code: "114-MEA-8-037-003", duration: "2025.04.22 ~ 2025.11.20", budget: "2,100,000", status: "已結案" },
+  
+  // 2024 國科會計畫
+  { year: "2024", type: "nstc", name: "國內舉辦國際學術研討會，『2025臺灣消費電子國際研討會』", role: "計畫主持人", partner: "國科會", code: "114-2916-I-992-002-A1", duration: "2025.07.16 ~ 2025.07.18", budget: "860,000", status: "執行中" },
+  { year: "2024", type: "nstc", name: "專題研究計畫 (新進人員研究計畫) ，『透過穿戴式增強實境眼鏡模擬眼振訊號的檢查，用於急性眩暈病患的檢測(2/3)』", role: "共同主持人", partner: "國科會", code: "MOST 112-2314-B-182A-094-MY3", duration: "2024.08.01 ~ 2025.07.31", budget: "1,156,700", status: "已結案" },
+  { year: "2024", type: "nstc", name: "專題研究計畫(一般研究計畫)，『利用數位表徵和生物指標的憂鬱症臨床世代以建立創新分類和精準治療的研究平台』", role: "共同主持人", partner: "國科會", code: "NSTC 113-2314-B-039-046", duration: "2024.08.01 ~ 2025.07.31", budget: "1,040,000", status: "已結案" }
+];
+---
+
+<Layout>
+  <main class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <!-- 麵包屑導覽 -->
+    <nav class="mb-8 flex text-sm text-slate-400">
+      <a href="/" class="transition hover:text-slate-900">首頁</a>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-slate-900">研究計畫</span>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <header class="mb-16">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
+        研究計畫 <span class="text-indigo-600 font-black italic">Projects</span>
+      </h1>
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500">
+        ICPS Lab 致力於學術創新與產學實務對接。本頁面紀錄了實驗室歷年承接之計畫詳情，包含國科會專案與各類政府委託計畫。
+      </p>
+    </header>
+
+    <!-- 年度篩選器 (同步至 Publications 的膠囊軌道樣式) -->
+    <section class="mb-14">
+      <div class="mb-6 flex items-end justify-between px-1">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">年度計畫</h2>
+          <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Select Fiscal Year</p>
+        </div>
+        <span class="text-xs font-mono font-bold text-slate-300 bg-slate-100 px-2 py-0.5 rounded">2026 — 2015</span>
+      </div>
+      
+      <div class="relative rounded-[2rem] bg-slate-100/60 p-1.5 ring-1 ring-slate-200/50">
+        <div class="no-scrollbar flex gap-1 overflow-x-auto">
+          {years.map((year) => (
+            <button
+              data-filter-year={year}
+              class="year-btn relative shrink-0 rounded-2xl px-6 py-3 text-base font-bold tracking-tight text-slate-500 transition-all duration-300 hover:text-slate-900 aria-selected:bg-white aria-selected:text-indigo-600 aria-selected:shadow-[0_2px_10px_-3px_rgba(0,0,0,0.1)] aria-selected:ring-1 aria-selected:ring-slate-200 active:scale-95"
+              aria-selected={year === 2025 ? "true" : "false"}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 right-1 w-12 bg-gradient-to-l from-slate-100/80 to-transparent md:hidden"></div>
+      </div>
+    </section>
+
+    <!-- 計畫類別篩選器 (同步至 Publications 樣式) -->
+    <section class="mb-16">
+      <h2 class="text-lg font-bold text-slate-900 mb-6 px-1">計畫類別</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {categories.map((cat) => (
+          <button
+            data-filter-type={cat.id}
+            class="type-btn group relative flex items-center justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 aria-selected:border-slate-900 active:scale-[0.98]"
+            aria-selected={cat.id === "nstc" ? "true" : "false"}
+          >
+            <div class="flex items-center gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={cat.icon} />
+                </svg>
+              </div>
+              <div class="text-left">
+                <span class="block text-base font-bold text-slate-900">{cat.label}</span>
+                <span class="text-[10px] uppercase tracking-[0.1em] text-slate-400 font-semibold">Classification</span>
+              </div>
+            </div>
+            
+            <div class="hidden group-aria-selected:block">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- 計畫列表容器 -->
+    <div id="projects-list" class="grid gap-6">
+      {allProjects.map((proj) => (
+        <article 
+          class="proj-item group relative overflow-hidden rounded-[2rem] border border-slate-100 bg-white p-8 transition-all duration-500 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-50/50 md:p-10" 
+          data-year={proj.year} 
+          data-type={proj.type}
+        >
+          <div class="flex flex-col gap-8">
+            <!-- 頂部：類別與狀態 -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-black uppercase tracking-widest text-indigo-600">{proj.partner}計畫</span>
+                <span class="h-1 w-1 rounded-full bg-slate-200"></span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{proj.code}</span>
+              </div>
+              <span class={`inline-flex items-center rounded-full px-3 py-1 text-[10px] font-black tracking-widest uppercase ${proj.status === '執行中' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-50 text-slate-400'}`}>
+                {proj.status === '執行中' && <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>}
+                {proj.status}
+              </span>
+            </div>
+
+            <!-- 計畫名稱 (核心焦點) -->
+            <h3 class="text-2xl font-bold leading-snug text-slate-900 group-hover:text-indigo-600 transition-colors md:text-3xl">
+              {proj.name}
+            </h3>
+
+            <!-- 核心資訊列 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-t border-slate-50 pt-8">
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">計畫角色</p>
+                <p class="font-bold text-slate-700">{proj.role}</p>
+              </div>
+              
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">執行期間</p>
+                <p class="font-medium text-slate-600 font-mono text-sm">{proj.duration}</p>
+              </div>
+
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">補助經費</p>
+                <p class="font-bold text-slate-700">NT$ {proj.budget}</p>
+              </div>
+
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">合辦單位</p>
+                <p class="font-bold text-slate-700">{proj.partner}</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 懸浮裝飾線 -->
+          <div class="absolute bottom-0 left-0 h-1 w-0 bg-indigo-600 transition-all duration-500 group-hover:w-full"></div>
+        </article>
+      ))}
+
+      <!-- 空狀態提示 -->
+      <div id="empty-state" class="hidden py-40 text-center rounded-[2rem] bg-slate-50/50">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-slate-200 mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <p class="text-xl font-bold text-slate-400">該年度尚無計畫記錄</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .animate-fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+  let currentYear = "2025";
+  let currentType = "nstc";
+
+  const yearBtns = document.querySelectorAll('.year-btn');
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const items = document.querySelectorAll('.proj-item');
+  const emptyState = document.getElementById('empty-state');
+
+  function updateFilter() {
+    let visibleCount = 0;
+    items.forEach(item => {
+      const itemYear = item.getAttribute('data-year');
+      const itemType = item.getAttribute('data-type');
+      if (itemYear === currentYear && itemType === currentType) {
+        item.classList.remove('hidden');
+        item.classList.add('animate-fade-in');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+        item.classList.remove('animate-fade-in');
+      }
+    });
+    if (visibleCount === 0) emptyState?.classList.remove('hidden');
+    else emptyState?.classList.add('hidden');
+  }
+
+  yearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      yearBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      currentYear = btn.getAttribute('data-filter-year') || "2025";
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      updateFilter();
+    });
+  });
+
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      currentType = btn.getAttribute('data-filter-type') || "nstc";
+      updateFilter();
+    });
+  });
+
+  updateFilter();
+</script>

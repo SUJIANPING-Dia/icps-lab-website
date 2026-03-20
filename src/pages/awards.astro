@@ -1,0 +1,199 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// 定義年份範圍
+const years = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2026 - i);
+
+// 獲獎資料陣列
+const allAwards = [
+  // 2026 獲獎紀錄
+  { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iMP Viewer全自動微塑膠獵捕系統", team: "指導學生" },
+  { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iCapa－基於人工智慧之主機板CPU周圍電容缺漏識別系統", team: "指導學生" },
+  { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "第二名", project: "FitMirror：基於人工智慧的老年人體適能診斷系統", team: "指導學生" },
+  { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "佳作", project: "iReflex-整合人工智慧影像識別與導電紗穿戴式護膝之神經膝反射偵測裝置", team: "指導學生" },
+  
+  // 2025 獲獎紀錄
+  { year: "2025", competition: "2025 台灣創新技術博覽會發明競賽", section: "發明競賽區", rank: "金牌獎", project: "基於人工智慧之外科手術室器械自動識別與盤點系統", team: "指導學生" },
+  { year: "2025", competition: "2025 跨域晶片設計應用創新專題實作競賽", section: "智慧終端裝置組", rank: "佳作", project: "iSD Viewer－SD卡生產線之人工智慧彩噴印刷瑕疵檢測系統", team: "指導學生" },
+  { year: "2025", competition: "第二十一屆全國電子設計創意競賽", section: "競賽組", rank: "佳作", project: "SD卡印刷瑕疵AI檢測平台", team: "指導學生" },
+  { year: "2025", competition: "第二十一屆全國電子設計創意競賽", section: "競賽組", rank: "佳作", project: "iPiG：人工智慧豬舍豬隻體重辨識系統", team: "指導學生" },
+  { year: "2025", competition: "第二十一屆全國電子設計創意競賽", section: "競賽組", rank: "佳作", project: "iNoodle：應用於製麵工廠之醬料包AI智慧影像辨識系統", team: "指導學生" },
+  { year: "2025", competition: "第二十一屆全國電子設計創意競賽", section: "學會獎項", rank: "SPS 特別獎", project: "iNoodle：應用於製麵工廠之醬料包AI智慧影像辨識系統", team: "指導學生" },
+  { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "綠能與控制應用組", rank: "第三名", project: "SD卡印刷瑕疵AI檢測平台", team: "指導學生" },
+  { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "利用深度學習技術進行豬隻體重智能化監測", team: "指導學生" },
+  { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iNoodle－應用於製麵工廠之醬料包AI智慧影像辨識系統", team: "指導學生" },
+];
+---
+
+<Layout>
+  <main class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <!-- 麵包屑導覽 -->
+    <nav class="mb-8 flex text-sm text-slate-400">
+      <a href="/" class="transition hover:text-slate-900">首頁</a>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-slate-900">獲獎紀錄</span>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <header class="mb-16">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
+        獲獎紀錄 <span class="text-amber-600 font-black italic tracking-tighter">Awards</span>
+      </h1>
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500">
+        展示 ICPS Lab 師生歷年於國內外各項競賽與發明展之卓越表現，見證我們在技術研發上的創新成果與實力。
+      </p>
+    </header>
+
+    <!-- 年度篩選器 -->
+    <section class="mb-16">
+      <div class="mb-6 flex items-end justify-between px-2">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">歷年榮譽</h2>
+          <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Select Honor Year</p>
+        </div>
+        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2015</span>
+      </div>
+      
+      <div class="relative rounded-full bg-slate-50 p-2 ring-1 ring-slate-200">
+        <div class="no-scrollbar flex items-center gap-1 overflow-x-auto">
+          {years.map((year) => (
+            <button
+              data-filter-year={year}
+              class="year-btn shrink-0 rounded-full px-6 py-2.5 text-sm font-bold tracking-tight text-slate-500 transition-all duration-300 hover:text-slate-900 aria-selected:bg-white aria-selected:text-amber-600 aria-selected:shadow-md aria-selected:ring-1 aria-selected:ring-slate-200 active:scale-95"
+              aria-selected={year === 2026 ? "true" : "false"}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 right-1 w-12 bg-gradient-to-l from-slate-50 to-transparent md:hidden"></div>
+      </div>
+    </section>
+
+    <!-- 獲獎列表容器 -->
+    <div id="awards-list" class="grid gap-8">
+      {allAwards.map((award) => (
+        <article 
+          class="award-item group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 md:p-10 transition-all duration-500 hover:border-amber-300 hover:shadow-2xl hover:shadow-amber-100/50" 
+          data-year={award.year}
+        >
+          <!-- 採用 Grid 嚴格劃分左右兩欄，保證對齊絕不跑版 -->
+          <div class="grid grid-cols-1 md:grid-cols-[130px_1fr] lg:grid-cols-[150px_1fr] gap-6 md:gap-10 items-start md:items-center">
+            
+            <!-- 左側大型勳章區塊 (固定寬度且強迫正方形) -->
+            <div class="flex flex-col items-center justify-center aspect-square w-28 md:w-full mx-auto md:mx-0 rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200/60 shadow-inner group-hover:from-amber-100 group-hover:to-amber-200/50 transition-colors">
+              <span class="text-[10px] font-black text-amber-600/80 uppercase tracking-widest mb-1 md:mb-2">Honor</span>
+              <span class="text-xl md:text-3xl font-black text-amber-950 text-center px-2 leading-tight break-words w-full">{award.rank}</span>
+            </div>
+
+            <!-- 右側資訊內容 -->
+            <div class="min-w-0 w-full">
+              <div class="flex flex-wrap items-center gap-3 mb-4 md:mb-5">
+                <div class="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white font-mono text-xs font-bold shadow-md">
+                  {award.year.slice(-2)}
+                </div>
+                <span class="text-xs font-black uppercase tracking-[0.1em] text-slate-500">{award.team}參賽榮譽</span>
+                <span class="hidden md:block h-1 w-1 rounded-full bg-slate-300"></span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{award.section}</span>
+              </div>
+
+              <p class="text-[10px] font-bold uppercase tracking-widest text-amber-600/70 mb-1.5">作品名稱 / Project Title</p>
+              <h3 class="text-xl md:text-2xl lg:text-3xl font-bold leading-snug text-slate-900 group-hover:text-amber-700 transition-colors break-words">
+                {award.project}
+              </h3>
+
+              <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 border-t border-slate-100 pt-6 md:pt-8">
+                <div class="flex items-start gap-3 md:gap-4">
+                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">競賽名稱</p>
+                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base break-words">{award.competition}</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start gap-3 md:gap-4">
+                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  </div>
+                  <div>
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">獲獎年度</p>
+                    <p class="font-mono text-sm md:text-base font-bold text-slate-600">{award.year} Academic Year</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 底部裝飾線 -->
+          <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-amber-500 transition-all duration-700 group-hover:w-full"></div>
+        </article>
+      ))}
+
+      <!-- 空狀態提示 -->
+      <div id="empty-state" class="hidden py-32 text-center rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-slate-300 mb-4 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <p class="text-xl font-bold text-slate-700 tracking-tight">該年度尚無獲獎紀錄</p>
+        <p class="mt-2 text-slate-400 font-medium text-xs tracking-widest uppercase">Select another year to explore</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+  let currentYear = "2026";
+
+  const yearBtns = document.querySelectorAll('.year-btn');
+  const items = document.querySelectorAll('.award-item');
+  const emptyState = document.getElementById('empty-state');
+
+  function updateFilter() {
+    let visibleCount = 0;
+    items.forEach(item => {
+      const itemYear = item.getAttribute('data-year');
+      if (itemYear === currentYear) {
+        item.classList.remove('hidden');
+        item.classList.add('animate-fade-in');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+        item.classList.remove('animate-fade-in');
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyState?.classList.remove('hidden');
+      emptyState?.classList.add('animate-fade-in');
+    } else {
+      emptyState?.classList.add('hidden');
+    }
+  }
+
+  yearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      yearBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      currentYear = btn.getAttribute('data-filter-year') || "2026";
+      
+      // 自動捲動到選中的年份
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      
+      updateFilter();
+    });
+  });
+
+  // 初始化
+  updateFilter();
+</script>

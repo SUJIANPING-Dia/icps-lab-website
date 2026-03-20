@@ -1,0 +1,30 @@
+---
+// src/components/Header.astro
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <!-- 左側 Logo 區塊 (加上連結讓使用者可以點擊回首頁) -->
+    <a href="/" class="shrink-0 transition hover:opacity-80">
+      <p class="text-lg font-bold tracking-wide text-slate-900">ICPS Lab</p>
+      <p class="text-xs text-slate-500">智慧網宇實體系統實驗室</p>
+    </a>
+
+    <!-- 右側選單 (優化間距與響應式折行，避免項目過多跑版) -->
+    <nav class="hidden flex-wrap items-center justify-end gap-x-4 gap-y-2 text-sm font-medium text-slate-600 lg:flex xl:gap-x-6">
+      <a href="/" class="transition hover:text-slate-900">首頁</a>
+      <a href="/about" class="transition hover:text-slate-900">關於我們</a>
+      <a href="/research" class="transition hover:text-slate-900">研究方向</a>
+      
+      <!-- 新增的四個頁籤 -->
+      <a href="/publications" class="transition hover:text-slate-900">重要著作</a>
+      <a href="/projects" class="transition hover:text-slate-900">研究計畫</a>
+      <a href="/awards" class="transition hover:text-slate-900">獲獎紀錄</a>
+      <a href="/partners" class="transition hover:text-slate-900">合作夥伴</a>
+      
+      <a href="/members" class="transition hover:text-slate-900">實驗室成員</a>
+      <a href="/news" class="transition hover:text-slate-900">最新消息</a>
+      <a href="/contact" class="transition hover:text-slate-900">聯絡資訊</a>
+    </nav>
+  </div>
+</header>

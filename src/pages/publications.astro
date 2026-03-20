@@ -1,0 +1,257 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// 定義年份範圍
+const years = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2026 - i);
+
+// 定義類別
+const categories = [
+  { id: "int-journal", label: "國際期刊論文", icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" },
+  { id: "int-conference", label: "國際研討會論文", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
+  { id: "dom-conference", label: "國內研討會論文", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
+];
+
+// 論文資料陣列 (已整合您的 2026/2025 期刊與研討會論文)
+const allPublications = [
+  // --- 2026 國際期刊 ---
+  { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "ChainEcho: A Cascaded Audio-sensing Relay Framework for Indoor IoT Beacon Applications", authors: "Ming-Che Chen, Wun-Cian Lan, and Wan-Jung Chang", venue: "IEEE Canadian Journal of Electrical and Computer Engineering", details: "Feb. 2026. (SCIE) (Corresponding Author)" },
+  { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Marking a New Phase of Growth: Highlights from the 2025 ICCE-Taiwan", authors: "Wan-Jung Chang and Liang-Bi Chen", venue: "IEEE Consumer Electronics Magazine", details: "Feb. 2026. (SCIE)" },
+  { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Continuous Ag Nanolayer/Interior network Formation on PU Fibers via alkali-enhanced process for Conductive Stretchable Strain Sensors", authors: "Lien-Chiang Hung, Shiau-Wu Lai, Ming-Che Chen, Wan-Jung Chang, Yang-Kun Ou, and Ying-Nien Chou", venue: "ACS Applied Polymer Materials", details: "Jan. 2026. (SCIE)" },
+  
+  // --- 2025 國際期刊 ---
+  { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Wearable Augmented Reality for Nystagmus Examination: A Feasibility Study in Vertigo Patients", authors: "Ching-Nung Wu, Ming-Che Chen, Chien-Yan Chien, Hsiang-Han Chang, Sheng-Dean Luo, Chung-Feng Hwang, and Wan-Jung Chang", venue: "Journal of Medical Internet Research (JMIR)", details: "vol. 27, pp. e75327, Nov. 2025. (SCIE), DOI10.2196/75327" },
+  { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Smart Voiding Measurement: An AI And Thermal Imaging Solution For Home-Based Voiding Assessment", authors: "Yu-Chen Chen, Hao-Wei Chen, Yung-Shun Juan, and Wan-Jung Chang", venue: "The Journal of Urology", details: "vol. 213, no. 5S, pp. e855, May. 2025. (SCI), DOI10.1097/01.JU.0001110020.31695.bf.18" },
+  { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "GaitMirror: Design and Implementation of an Artificial Intelligence-Based Gait Recognition System for Evaluating the Effectiveness of Lower Limb Rehabilitation", authors: "Ming-Che Chen, Jian-Ping Su, Yu-Lin Wang, Wan-Jung Chang", venue: "IEEE Sensors Journal", details: "vol. 25, no. 15, pp. 30118-30134, Aug. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3577995" },
+  { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "BedEye: A Bed Exit and Bedside Fall Warning System Based on Skeleton Recognition Technology for Elderly Patients", authors: "Liang-Bi Chen, Wan-Jung Chang, and Tzu-Chin Yang", venue: "IEEE Access", details: "vol. 13, pp. 60403-60423, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/ACCESS.2025.3558004" },
+  { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "SmartPD: An AI-Enhanced System for Optimizing Home-Based Continuous Ambulatory Peritoneal Dialysis", authors: "Ming-Che Chen, Ren-Guei Hsu, Hsin-Hsu Chou, Hsiag-Chun Chen, Jin-Yi Lin, Chi-Tze Lin, Neng-Yao You, Ming-Yi Li, Shu-Kai Li, Wei-Ren Zeng, Yang-Kun Ou, and Wan-Jung Chang", venue: "IEEE Sensors Journal", details: "vol. 25, no. 7, pp. 12303-12317, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3531893" },
+
+  // --- 2026 國際研討會 ---
+  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning", authors: "Wan-Jung Chang, Wei-Yuan Shih, Bo-Yun Tsai, and Jian-Ping Su", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "Stretchable AgNP/AgNW Co-Deposited Conductive Fiber with PDMS Encapsulation for Patellar Tendon Reflex Strain Sensing", authors: "Ying-Nien Chou, Po-Chun Huang, Kai-Sheng Hsieh, and Wan-Jung Chang", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line", authors: "Wan-Jung Chang, Ping-Ying She, Chia-Yu Wu, and Jian-Ping Su", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+
+  // --- 2025 國際研討會 ---
+  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "ToFPose: An Artificial Intelligence Human Skeleton Estimation Mechanism based on Two-Dimensional Time-of-Flight Imaging", authors: "Ting-Hsuan Hsu, Wan-Jung Chang", venue: "2025 IEEE The 14th Global Conference on Consumer Electronics (GCCE 2025)", details: "Osaka, Japan, Sep. 23 – Sep. 26, 2025. (EI)" },
+  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "An Augmented Reality-Based Nystagmus Detection System Utilizing Eye-Tracking Smart Glasses", authors: "Ming-Che Chen, Ching-Nung Wu, Chien-Yan Chien, Hsiang-Han Chang, Wan-Jung Chang", venue: "2025 IEEE International Conference on Consumer Electronic – Taiwan(ICCE-TW)", details: "Kaohsiung, Taiwan, July. 16-18, 2025." },
+  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "FitMirror: an Artificial Intelligence Mirror System for Elderly Physical Fitness Diagnosis", authors: "Wan-Jung Chang, Bo-Hao Liao, Chia-Fen Wang, Sheng-chieh Kang, Shao-jui Hung, Wei Cheng Huang", venue: "2025 1st International Conference on Consumer Technology (ICCT-Pacific)", details: "Matsue, Japan, Mar. 29-31, 2025. (EI)" },
+  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "ARIS: An Artificial-Intelligence-Based Automatic Recognition and Inventory System for Surgical Instruments in Operating Rooms", authors: "Wan-Jung Chang, Tzu-Chuan Hsu, Liang-Bi Chen, Ming-Che Chen, Yi-Jia Chen, Bo-Hao Liao, Chen-Wei Yang, Yan-Cheng Chang, Zheng-Yan Lee, Hsiu-Yen Huang, Hui-Chien Hung", venue: "2025 IEEE International Conference on Consumer Electronics (ICCE 2025)", details: "Las Vegas, USA, Jan. 11 – 14, 2025. (EI)" }
+];
+---
+
+<Layout>
+  <main class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <!-- 麵包屑導航 -->
+    <nav class="mb-8 flex text-sm text-slate-400">
+      <a href="/" class="transition hover:text-slate-900">首頁</a>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-slate-900">重要著作</span>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <header class="mb-16">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
+        學術著作 <span class="text-sky-600 font-black italic tracking-tighter">Publications</span>
+      </h1>
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500">
+        展示 ICPS Lab 師生歷年於國際期刊與各項學術研討會發表之研究論文，見證我們在學術領域的影響力與知識貢獻。
+      </p>
+    </header>
+
+    <!-- 年度篩選器 -->
+    <section class="mb-16">
+      <div class="mb-6 flex items-end justify-between px-2">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">發表年份</h2>
+          <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Select Publication Year</p>
+        </div>
+        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2015</span>
+      </div>
+      
+      <div class="relative rounded-full bg-slate-50 p-2 ring-1 ring-slate-200">
+        <div class="no-scrollbar flex items-center gap-1 overflow-x-auto">
+          {years.map((year) => (
+            <button
+              data-filter-year={year}
+              class="year-btn shrink-0 rounded-full px-6 py-2.5 text-sm font-bold tracking-tight text-slate-500 transition-all duration-300 hover:text-slate-900 aria-selected:bg-white aria-selected:text-sky-600 aria-selected:shadow-md aria-selected:ring-1 aria-selected:ring-slate-200 active:scale-95"
+              aria-selected={year === 2026 ? "true" : "false"}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+        <div class="pointer-events-none absolute inset-y-0 right-1 w-12 bg-gradient-to-l from-slate-50 to-transparent md:hidden"></div>
+      </div>
+    </section>
+
+    <!-- 類別篩選器 -->
+    <section class="mb-16">
+      <h2 class="text-lg font-bold text-slate-900 mb-6 px-2">著作類別</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {categories.map((cat) => (
+          <button
+            data-filter-type={cat.id}
+            class="type-btn group relative flex items-center justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 aria-selected:border-slate-900 active:scale-[0.98]"
+            aria-selected={cat.id === "int-journal" ? "true" : "false"}
+          >
+            <div class="flex items-center gap-4">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 transition-colors group-aria-selected:bg-white/10 group-aria-selected:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={cat.icon} />
+                </svg>
+              </div>
+              <div class="text-left">
+                <span class="block text-base font-bold text-slate-900 group-aria-selected:text-white transition-colors">{cat.label}</span>
+                <span class="text-[10px] uppercase tracking-[0.1em] text-slate-400 font-semibold group-aria-selected:text-slate-400">Category</span>
+              </div>
+            </div>
+            
+            <div class="hidden group-aria-selected:block">
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- 著作列表容器 (套用與 Awards 相同的防跑版 Grid 網格佈局) -->
+    <div id="publications-list" class="grid gap-8">
+      {allPublications.map((pub) => (
+        <article 
+          class="pub-item group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 md:p-10 transition-all duration-500 hover:border-sky-300 hover:shadow-2xl hover:shadow-sky-100/50" 
+          data-year={pub.year}
+          data-type={pub.type}
+        >
+          <!-- Grid 嚴格劃分左右兩欄 (防跑版核心) -->
+          <div class="grid grid-cols-1 md:grid-cols-[130px_1fr] lg:grid-cols-[150px_1fr] gap-6 md:gap-10 items-start md:items-center">
+            
+            <!-- 左側大型勳章區塊 (固定正方形，絕不變形) -->
+            <div class="flex flex-col items-center justify-center aspect-square w-28 md:w-full mx-auto md:mx-0 rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-sky-50 to-sky-100/50 border border-sky-200/60 shadow-inner group-hover:from-sky-100 group-hover:to-sky-200/50 transition-colors shrink-0">
+              <span class="text-[10px] font-black text-sky-600/80 uppercase tracking-widest mb-1 md:mb-2">{pub.typeShort}</span>
+              <span class="text-3xl md:text-4xl lg:text-5xl font-black text-sky-950 text-center px-2 leading-tight break-words w-full">{pub.year}</span>
+            </div>
+
+            <!-- 右側論文資訊內容 (min-w-0 強制換行防破版) -->
+            <div class="min-w-0 w-full">
+              <div class="flex flex-wrap items-center gap-3 mb-4 md:mb-5">
+                <div class="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white font-mono text-xs font-bold shadow-md">
+                  {pub.year.slice(-2)}
+                </div>
+                <span class="text-xs font-black uppercase tracking-[0.1em] text-slate-500">{pub.typeLabel}</span>
+                <span class="hidden md:block h-1 w-1 rounded-full bg-slate-300"></span>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ICPS Lab Publication</span>
+              </div>
+
+              <p class="text-[10px] font-bold uppercase tracking-widest text-sky-600/70 mb-1.5">論文名稱 / Paper Title</p>
+              <h3 class="text-xl md:text-2xl lg:text-3xl font-bold leading-snug text-slate-900 group-hover:text-sky-700 transition-colors break-words">
+                {pub.title}
+              </h3>
+
+              <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 border-t border-slate-100 pt-6 md:pt-8">
+                <!-- 作者區塊 -->
+                <div class="flex items-start gap-3 md:gap-4">
+                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">作者列表</p>
+                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base break-words">{pub.authors}</p>
+                  </div>
+                </div>
+                
+                <!-- 發表出處區塊 -->
+                <div class="flex items-start gap-3 md:gap-4">
+                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">發表期刊 / 研討會</p>
+                    <p class="font-bold text-slate-700 text-sm md:text-base break-words leading-tight italic">{pub.venue}</p>
+                    {pub.details && <p class="font-mono text-xs text-slate-500 mt-1 break-words">{pub.details}</p>}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 底部裝飾線 -->
+          <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-sky-500 transition-all duration-700 group-hover:w-full"></div>
+        </article>
+      ))}
+
+      <!-- 空狀態提示 -->
+      <div id="empty-state" class="hidden py-32 text-center rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-slate-300 mb-4 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <p class="text-xl font-bold text-slate-700 tracking-tight">該分類尚無著作紀錄</p>
+        <p class="mt-2 text-slate-400 font-medium text-xs tracking-widest uppercase">Select another filter to explore</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+  let currentYear = "2026";
+  let currentType = "int-journal";
+
+  const yearBtns = document.querySelectorAll('.year-btn');
+  const typeBtns = document.querySelectorAll('.type-btn');
+  const items = document.querySelectorAll('.pub-item');
+  const emptyState = document.getElementById('empty-state');
+
+  function updateFilter() {
+    let visibleCount = 0;
+    items.forEach(item => {
+      const itemYear = item.getAttribute('data-year');
+      const itemType = item.getAttribute('data-type');
+      if (itemYear === currentYear && itemType === currentType) {
+        item.classList.remove('hidden');
+        item.classList.add('animate-fade-in');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+        item.classList.remove('animate-fade-in');
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyState?.classList.remove('hidden');
+      emptyState?.classList.add('animate-fade-in');
+    } else {
+      emptyState?.classList.add('hidden');
+      emptyState?.classList.remove('animate-fade-in');
+    }
+  }
+
+  yearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      yearBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      currentYear = btn.getAttribute('data-filter-year') || "2026";
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      updateFilter();
+    });
+  });
+
+  typeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
+      btn.setAttribute('aria-selected', 'true');
+      currentType = btn.getAttribute('data-filter-type') || "int-journal";
+      updateFilter();
+    });
+  });
+
+  updateFilter();
+</script>

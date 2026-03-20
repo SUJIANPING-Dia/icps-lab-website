@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// 定義合作夥伴資料陣列
+// 您可以自由修改、新增或替換 logo 圖片網址
+const partners = [
+  { 
+    name: "國家科學及技術委員會", 
+    category: "政府機關", 
+    desc: "長期支持本實驗室進行前瞻性學術研究與跨領域產學合作計畫。", 
+    color: "purple" 
+  },
+  { 
+    name: "工業技術研究院 (ITRI)", 
+    category: "研究機構", 
+    desc: "共同投入數位孿生與智慧製造領域之技術開發與場域驗證。", 
+    color: "blue" 
+  },
+  { 
+    name: "高雄長庚紀念醫院", 
+    category: "醫療機構", 
+    desc: "攜手研發智慧醫療照護系統、眩暈檢測與穿戴式生理感測裝置。", 
+    color: "rose" 
+  },
+  { 
+    name: "日月光半導體 (ASE)", 
+    category: "產學合作", 
+    desc: "合作開發半導體封測製程之人工智慧瑕疵檢測系統。", 
+    color: "emerald" 
+  },
+  { 
+    name: "緯創資通 (Wistron)", 
+    category: "產學合作", 
+    desc: "聚焦於邊緣運算與工業物聯網 (IIoT) 之應用與技術轉移。", 
+    color: "emerald" 
+  },
+  { 
+    name: "金屬工業研究發展中心", 
+    category: "研究機構", 
+    desc: "合作推動傳統產業數位轉型與 AI 視覺辨識導入解決方案。", 
+    color: "blue" 
+  },
+  { 
+    name: "教育部", 
+    category: "政府機關", 
+    desc: "參與智慧感知與創新教學相關之實務型專案計畫。", 
+    color: "purple" 
+  },
+  { 
+    name: "在地長照機構", 
+    category: "醫療與照護", 
+    desc: "導入機構型 AI 感知照護解決方案，提升高齡者照護品質。", 
+    color: "rose" 
+  }
+];
+
+// 用於對應不同類別標籤顏色的 Tailwind class 字典
+const badgeColors: Record<string, string> = {
+  purple: "bg-purple-50 text-purple-700 ring-purple-200",
+  blue: "bg-blue-50 text-blue-700 ring-blue-200",
+  rose: "bg-rose-50 text-rose-700 ring-rose-200",
+  emerald: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+};
+---
+
+<Layout>
+  <main class="mx-auto max-w-7xl px-6 py-24 md:py-32">
+    <!-- 麵包屑導航 -->
+    <nav class="mb-8 flex text-sm text-slate-400">
+      <a href="/" class="transition hover:text-slate-900">首頁</a>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-slate-900">合作夥伴</span>
+    </nav>
+
+    <!-- 頁面標題區 -->
+    <header class="mb-20">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
+        合作夥伴 <span class="text-emerald-600 font-black italic tracking-tighter">Partners</span>
+      </h1>
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500">
+        ICPS Lab 積極與政府機關、研究單位及業界領先企業建立緊密的合作關係，共同推動智慧網宇實體系統之技術創新與落地應用。
+      </p>
+    </header>
+
+    <!-- 合作夥伴列表容器 (網格佈局) -->
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {partners.map((partner, index) => (
+        <article 
+          class="group relative flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:border-emerald-300 hover:shadow-2xl hover:shadow-emerald-100/50 animate-fade-in"
+          style={`animation-delay: ${index * 100}ms;`}
+        >
+          <!-- Logo 預留區塊 (如果您有實際 Logo，可以將裡面的 div 換成 img 標籤) -->
+          <div class="relative flex h-40 w-full items-center justify-center bg-slate-50 border-b border-slate-100 p-6 transition-colors group-hover:bg-slate-100/50">
+            <!-- 預設的 Logo 替代圖案 -->
+            <div class="text-center text-slate-300 group-hover:text-emerald-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              <span class="font-mono text-xs font-bold uppercase tracking-widest">Logo Placeholder</span>
+            </div>
+            
+            <!-- 分類標籤 (絕對定位疊加在 Logo 區塊右下角) -->
+            <span class={`absolute bottom-4 right-4 inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-widest ring-1 ${badgeColors[partner.color] || "bg-slate-50 text-slate-600 ring-slate-200"}`}>
+              {partner.category}
+            </span>
+          </div>
+
+          <!-- 資訊內容區塊 -->
+          <div class="flex flex-1 flex-col p-6 md:p-8">
+            <h3 class="mb-3 text-xl font-bold leading-snug text-slate-900 group-hover:text-emerald-700 transition-colors break-words">
+              {partner.name}
+            </h3>
+            <p class="text-sm leading-relaxed text-slate-500 flex-1">
+              {partner.desc}
+            </p>
+          </div>
+          
+          <!-- 底部裝飾線 -->
+          <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-emerald-500 transition-all duration-700 group-hover:w-full"></div>
+        </article>
+      ))}
+    </div>
+
+    <!-- 底部行動呼籲 (Call to Action) -->
+    <div class="mt-24 rounded-[3rem] bg-slate-900 p-10 text-center md:p-16">
+      <h2 class="text-3xl font-extrabold text-white md:text-4xl">準備好與我們攜手合作嗎？</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+        我們隨時歡迎學術交流、技術轉移及各項產學合作提案。請與我們聯繫，共同探索智慧科技的無限可能。
+      </p>
+      <div class="mt-8">
+        <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-emerald-500 px-8 py-4 text-sm font-bold text-white transition-all hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/30 active:scale-95">
+          聯絡實驗室
+          <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* 階梯式淡入動畫 */
+  .animate-fade-in { 
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards; 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+</style>
