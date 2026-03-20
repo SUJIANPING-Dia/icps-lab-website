@@ -2,17 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 
 // 定義年份範圍
-const years = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2026 - i);
+const years = Array.from({ length: 2026 - 2016 + 1 }, (_, i) => 2026 - i);
 
-// 獲獎資料陣列
+// 獲獎資料陣列 (完整整合 2016 - 2026)
 const allAwards = [
-  // 2026 獲獎紀錄
+  // --- 2026 ---
   { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iMP Viewer全自動微塑膠獵捕系統", team: "指導學生" },
   { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iCapa－基於人工智慧之主機板CPU周圍電容缺漏識別系統", team: "指導學生" },
   { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "第二名", project: "FitMirror：基於人工智慧的老年人體適能診斷系統", team: "指導學生" },
   { year: "2026", competition: "第二十一屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "佳作", project: "iReflex-整合人工智慧影像識別與導電紗穿戴式護膝之神經膝反射偵測裝置", team: "指導學生" },
-  
-  // 2025 獲獎紀錄
+
+  // --- 2025 ---
   { year: "2025", competition: "2025 台灣創新技術博覽會發明競賽", section: "發明競賽區", rank: "金牌獎", project: "基於人工智慧之外科手術室器械自動識別與盤點系統", team: "指導學生" },
   { year: "2025", competition: "2025 跨域晶片設計應用創新專題實作競賽", section: "智慧終端裝置組", rank: "佳作", project: "iSD Viewer－SD卡生產線之人工智慧彩噴印刷瑕疵檢測系統", team: "指導學生" },
   { year: "2025", competition: "第二十一屆全國電子設計創意競賽", section: "競賽組", rank: "佳作", project: "SD卡印刷瑕疵AI檢測平台", team: "指導學生" },
@@ -22,25 +22,166 @@ const allAwards = [
   { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "綠能與控制應用組", rank: "第三名", project: "SD卡印刷瑕疵AI檢測平台", team: "指導學生" },
   { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "利用深度學習技術進行豬隻體重智能化監測", team: "指導學生" },
   { year: "2025", competition: "第二十屆數位訊號處理創思設計競賽", section: "軟體與嵌入式平台應用組", rank: "佳作", project: "iNoodle－應用於製麵工廠之醬料包AI智慧影像辨識系統", team: "指導學生" },
+
+  // --- 2024 ---
+  { year: "2024", competition: "2024 EE創意挑戰賽", section: "校園組", rank: "冠軍", project: "EndoEye：AI監測，守護病患生命", team: "指導學生" },
+  { year: "2024", competition: "2024 5G創新應用大賽", section: "校園組", rank: "季軍", project: "AR眼鏡用於中風後上肢復健鏡像治療系統", team: "指導學生" },
+  { year: "2024", competition: "2024通訊大賽", section: "創新節能優化實作組", rank: "優勝", project: "iOP-外科手術室之人工智慧器械辨識暨盤點系統", team: "指導學生" },
+  { year: "2024", competition: "2024全國大專院校資訊服務創新競賽", section: "資訊應用組", rank: "第一名", project: "iOP-外科手術室之人工智慧器械辨識暨盤點系統", team: "指導學生" },
+  { year: "2024", competition: "2024智慧晶片系統應用創新專題實作競賽", section: "智慧終端裝置組", rank: "銅獎", project: "適用於外科手術式之人工智慧器械辨識系統", team: "指導學生" },
+  { year: "2024", competition: "第19屆戰國策全國創新創業競賽", section: "創新創意組", rank: "第一名", project: "人工智慧氣管內管內位移暨躁動警示系統", team: "指導學生" },
+  { year: "2024", competition: "2024瑞士日內瓦國際發明展", section: "國際組", rank: "金牌", project: "Endotracheal Tube Displacement Recognition System", team: "指導學生" },
+  { year: "2024", competition: "第20屆全國電子設計創意競賽", section: "電子組", rank: "第二名", project: "基於擴增實境智慧眼鏡之鏡像復健系統", team: "指導學生" },
+  { year: "2024", competition: "第20屆全國電子設計創意競賽", section: "資通組", rank: "第一名", project: "結合AR智慧眼鏡擴增實境之智慧護理推車", team: "指導學生" },
+  { year: "2024", competition: "第十九屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "第二名", project: "低解析熱影像AI辨識精神病房預測攻擊性事件", team: "指導學生" },
+
+  // --- 2023 ---
+  { year: "2023", competition: "2023第20屆國家新創獎", section: "醫療器械", rank: "臨床新創獎", project: "智能膳魔術師－數位恆溫腹膜透析液監控裝置", team: "指導學生" },
+  { year: "2023", competition: "2023 Mobileheroes通訊大賽", section: "聯網未來挑戰賽", rank: "冠軍", project: "基於3D-ToF之人工智慧跌倒辨識系統", team: "指導學生" },
+  { year: "2023", competition: "2023 Mobileheroes通訊大賽", section: "聯網未來挑戰賽", rank: "亞軍", project: "使用擴增實境智能眼鏡之人工智慧鏡像治療系統", team: "指導學生" },
+  { year: "2023", competition: "第28屆大專校院資訊應用服務創新競賽", section: "資訊應用IP10組", rank: "第一名", project: "可攜式之人工智慧居家排尿檢測系統", team: "指導學生" },
+  { year: "2023", competition: "第28屆大專校院資訊應用服務創新競賽", section: "資訊應用IP7組", rank: "第一名", project: "次世代護理推車", team: "指導學生" },
+  { year: "2023", competition: "2023亞洲XR創新金點大賞", section: "XR菁英", rank: "第一名", project: "智護匠心", team: "指導學生" },
+  { year: "2023", competition: "2023教育部智慧晶片系統應用創新專題實作競賽", section: "智慧終端裝置組", rank: "銅獎", project: "ToFEye", team: "指導學生" },
+  { year: "2023", competition: "2023教育部智慧晶片系統應用創新專題實作競賽", section: "智慧健康組", rank: "佳作", project: "人工智慧居家排尿健康評估系統", team: "指導學生" },
+  { year: "2023", competition: "國科會111年度大專生研究計畫", section: "研究創作", rank: "研究創作獎", project: "基於人工智慧熱影像之居家排尿檢測系統", team: "指導學生" },
+  { year: "2023", competition: "2023BioSTEM全國生醫創意競賽", section: "大專組", rank: "第一名", project: "Ton UP 舌肌韻律互動訓練", team: "指導學生" },
+  { year: "2023", competition: "2023年教育部全國技專院校學生實務專題製作競賽", section: "資工通訊群", rank: "第一名", project: "Nurs+：次世代智慧護理推車", team: "指導學生" },
+  { year: "2023", competition: "第十八屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "第一名", project: "iCAPD智慧腹膜透析監控裝置", team: "指導學生" },
+  { year: "2023", competition: "第十八屆數位訊號處理創思設計競賽", section: "AI人工智慧組", rank: "第一名", project: "Nurs+次世代護理推車", team: "指導學生" },
+
+  // --- 2022 ---
+  { year: "2022", competition: "2022大專校院機電暨智慧創意實作競賽", section: "機電組", rank: "優等", project: "iBed人工智慧熱影像虛擬照護床墊", team: "指導學生" },
+  { year: "2022", competition: "2022全國大專院校產學創新實作競賽", section: "人工智慧應用組", rank: "第三名", project: "iVoiding", team: "指導學生" },
+  { year: "2022", competition: "2022全國大專院校產學創新實作競賽", section: "機械及自動化組", rank: "第三名", project: "AOI+", team: "指導學生" },
+  { year: "2022", competition: "2022第六屆慈悲科技創新競賽", section: "慈悲科技", rank: "佳作", project: "智慧腹膜透析監控裝置", team: "指導學生" },
+  { year: "2022", competition: "2022教育部智慧晶片系統應用創新專題實作競賽", section: "智慧健康類組", rank: "佳作", project: "iGAIT", team: "指導學生" },
+  { year: "2022", competition: "第十七屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "第一名", project: "iBed人工智慧熱影像虛擬照護床墊", team: "指導學生" },
+  { year: "2022", competition: "第十七屆數位訊號處理創思設計競賽", section: "健康照護應用組", rank: "佳作", project: "iVoiding", team: "指導學生" },
+
+  // --- 2021 ---
+  { year: "2021", competition: "2021無限次元智慧醫療競賽", section: "醫療競賽", rank: "佳作", project: "i-Voiding", team: "指導學生" },
+  { year: "2021", competition: "2021中華電信5G創新應用大賽", section: "5G應用", rank: "智慧特別獎", project: "智慧眼鏡應用於長照巡房及遠距會診", team: "指導學生" },
+  { year: "2021", competition: "2021均豪全國大專院校智動化設備創作獎", section: "智動化", rank: "第一名", project: "基於深度學習PCBA銲點缺陷檢測系統", team: "指導學生" },
+  { year: "2021", competition: "2021均豪全國大專院校智動化設備創作獎", section: "智動化", rank: "佳作", project: "AI防跌小夜燈", team: "指導學生" },
+  { year: "2021", competition: "2021數位科技解決方案競賽", section: "民生醫院出題", rank: "評審獎", project: "EyesBed", team: "指導學生" },
+  { year: "2021", competition: "2021全國大專校院智慧創新暨跨域整合創作競賽", section: "物聯網組", rank: "第三名", project: "促進長者健康之體適能健身鏡", team: "指導學生" },
+  { year: "2021", competition: "2021工業局AI+新銳選拔賽", section: "佐臻題", rank: "決選優勝獎", project: "智慧眼鏡應用於長照巡房及遠距會診", team: "指導學生" },
+  { year: "2021", competition: "2021第18屆國家新創獎", section: "新創獎", rank: "學研新創獎", project: "人工智慧義肢手臂", team: "指導學生" },
+  { year: "2021", competition: "2021第18屆國家新創獎", section: "新創獎", rank: "臨床新創獎", project: "智慧防跌照明暨警示系統", team: "指導學生" },
+  { year: "2021", competition: "2021第五屆慈悲科技創新競賽", section: "慈悲科技", rank: "第三名", project: "Eyelight", team: "指導學生" },
+  { year: "2021", competition: "2021 i2CreaTE Younger Inventor Award", section: "International", rank: "銅獎", project: "The Armature Project", team: "指導學生" },
+  { year: "2021", competition: "2021年教育部智慧晶片系統應用創新專題實作競賽", section: "模客組智慧健康", rank: "金獎", project: "NursMed+", team: "指導學生" },
+  { year: "2021", competition: "2021年教育部智慧晶片系統應用創新專題實作競賽", section: "創客組", rank: "企業特別獎", project: "床前明月光", team: "指導學生" },
+  { year: "2021", competition: "2021年科技部創新創業績力計畫(FITI)", section: "創業競賽", rank: "創業傑出獎", project: "AI Armature", team: "指導學生" },
+  { year: "2021", competition: "2021年教育部全國技專院校學生實務專題製作競賽", section: "資工通訊群", rank: "第一名", project: "基於深度學習之PCBA銲點缺陷檢測系統", team: "指導學生" },
+  { year: "2021", competition: "2021 育秀盃創意獎競賽", section: "工業設計", rank: "銀獎", project: "N+護理推車", team: "指導學生" },
+  { year: "2021", competition: "第十六屆數位訊號處理創思設計競賽", section: "健康照護", rank: "第一名", project: "iMirror：AI體適能魔鏡", team: "指導學生" },
+  { year: "2021", competition: "第十六屆數位訊號處理創思設計競賽", section: "軟體平台", rank: "佳作", project: "HMed+", team: "指導學生" },
+
+  // --- 2020 ---
+  { year: "2020", competition: "2020美國國際設計獎(IDA)", section: "Design", rank: "銅獎", project: "童話世界(Visual Land)", team: "指導學生" },
+  { year: "2020", competition: "2020經濟部技術處搶鮮大賽", section: "創新實作類", rank: "冠軍", project: "MedHelper", team: "指導學生" },
+  { year: "2020", competition: "2020經濟部技術處搶鮮大賽", section: "創新實作類", rank: "亞軍", project: "BedVision", team: "指導學生" },
+  { year: "2020", competition: "2020經濟部技術處搶鮮大賽", section: "創新實作類", rank: "季軍", project: "基於深度學習應用於視障者輔助導引系統", team: "指導學生" },
+  { year: "2020", competition: "2020經濟部技術處搶鮮大賽", section: "創新實作類", rank: "優選", project: "PCB銲點瑕疵智慧視覺檢測系統", team: "指導學生" },
+  { year: "2020", competition: "2020 Mobileheroes通訊大賽", section: "聯網挑戰賽", rank: "亞軍", project: "Visionary", team: "指導學生" },
+  { year: "2020", competition: "2020 Mobileheroes通訊大賽", section: "聯網挑戰賽", rank: "校園菁英獎", project: "iBuffet", team: "指導學生" },
+  { year: "2020", competition: "2020美國國際設計傑出獎(IDEA)", section: "Design", rank: "銀獎", project: "童話世界(Visual Land)", team: "指導學生" },
+  { year: "2020", competition: "2020科技觀光得塔推進賽", section: "觀光導覽", rank: "展翅台灣藍鵠獎", project: "基於深度學習之視障者觀光導覽系統", team: "指導學生" },
+  { year: "2020", competition: "2020 gSIC-REAT", section: "Technology", rank: "銅獎", project: "Bedside Defender", team: "指導學生" },
+  { year: "2020", competition: "2020 國家醫療品質獎", section: "品質獎", rank: "醫療品質標章", project: "防跌下床保護暨預警裝置", team: "指導學生" },
+  { year: "2020", competition: "2020 全國大專校院智慧創新暨跨域整合創作競賽", section: "數位永續", rank: "第二名", project: "Eyewall", team: "指導學生" },
+  { year: "2020", competition: "2020 全國大專校院智慧創新暨跨域整合創作競賽", section: "智慧機器", rank: "第三名", project: "基於深度學習PCB瑕疵辨識系統", team: "指導學生" },
+  { year: "2020", competition: "2020第四屆慈悲科技創新競賽", section: "慈悲科技", rank: "第二名", project: "Go-To-Guide", team: "指導學生" },
+  { year: "2020", competition: "2020 光寶創新獎", section: "技術組", rank: "金賞", project: "基於人工智慧之無喉者發聲輔助系統", team: "指導學生" },
+  { year: "2020", competition: "2020 金門產業創新創意競賽", section: "創新組", rank: "冠軍", project: "go to guide 幫導盲", team: "指導學生" },
+  { year: "2020", competition: "2020 第二屆智慧聯網專題實作競賽", section: "工業聯網", rank: "金獎", project: "MedEye", team: "指導學生" },
+  { year: "2020", competition: "2020第二十屆旺宏金矽獎", section: "應用組", rank: "銅獎", project: "視障者行走障礙物警示系統", team: "指導學生" },
+  { year: "2020", competition: "2020第十五屆戰國策全國創新創業競賽", section: "產業組", rank: "優選", project: "go to guide 幫導盲", team: "指導學生" },
+  { year: "2020", competition: "2020第十五屆戰國策全國創新創業競賽", section: "創新組", rank: "季軍", project: "MedEye", team: "指導學生" },
+  { year: "2020", competition: "2020 光寶創新獎", section: "學會獎", rank: "合作夥伴特別獎", project: "EyeWall", team: "指導學生" },
+  { year: "2020", competition: "2020玩具與孕嬰用品創意設計競賽", section: "玩具類", rank: "佳作", project: "童話世界", team: "指導學生" },
+  { year: "2020", competition: "第十五屆數位訊號處理創思設計競賽", section: "健康照護", rank: "第一名", project: "iFood：餐臺膳食管理系統", team: "指導學生" },
+  { year: "2020", competition: "第十五屆數位訊號處理創思設計競賽", section: "軟體組", rank: "第三名", project: "MedEye", team: "指導學生" },
+  { year: "2020", competition: "第十五屆數位訊號處理創思設計競賽", section: "物聯網組", rank: "第三名", project: "go to guide 幫導盲", team: "指導學生" },
+
+  // --- 2019 ---
+  { year: "2019", competition: "2019經濟部技術處搶鮮大賽", section: "創新實作", rank: "冠軍", project: "SmartGuide智慧導眼", team: "指導學生" },
+  { year: "2019", competition: "2019經濟部技術處搶鮮大賽", section: "創新實作", rank: "優選獎", project: "Skyeye", team: "指導學生" },
+  { year: "2019", competition: "2019高雄國際發明暨設計展(KIDE)", section: "發明展", rank: "金牌獎", project: "Skyeye", team: "指導學生" },
+  { year: "2019", competition: "2019全國大專校院智慧創新暨跨領域整合創作競賽", section: "數位永續", rank: "第三名", project: "天空之眼", team: "指導學生" },
+  { year: "2019", competition: "2019全國大專校院智慧創新暨跨領域整合創作競賽", section: "物聯網組", rank: "第三名", project: "防追撞車門之智慧聯網預警系統", team: "指導學生" },
+  { year: "2019", competition: "2019第三屆慈悲科技創新競賽", section: "慈悲科技", rank: "第一名", project: "SmartGuide智慧導眼", team: "指導學生" },
+  { year: "2019", competition: "2019車用電子創新發明競賽", section: "電子競賽", rank: "優勝獎", project: "防追撞車門之智慧聯網預警系統", team: "指導學生" },
+  { year: "2019", competition: "2019台灣創新技術博覽會發明競賽", section: "技術獎", rank: "入選技術獎", project: "基於人工智慧邊緣運算技術之跌倒偵測系統", team: "指導學生" },
+  { year: "2019", competition: "2019台灣創新技術博覽會發明競賽", section: "專利組", rank: "銀牌獎", project: "視障者智慧輔具系統", team: "指導學生" },
+  { year: "2019", competition: "2019台灣創新技術博覽會發明競賽", section: "專利組", rank: "銀牌獎", project: "智慧藥物辨識系統", team: "指導學生" },
+  { year: "2019", competition: "2019 光寶創新獎", section: "技術組", rank: "最佳潛力獎", project: "SmartGuide", team: "指導學生" },
+  { year: "2019", competition: "2019 長照與居家智慧應用科技設計國際競賽", section: "設計組", rank: "第一名", project: "SmartGuide", team: "指導學生" },
+  { year: "2019", competition: "2019 長照與居家智慧應用科技設計國際競賽", section: "設計組", rank: "第三名", project: "MedBox", team: "指導學生" },
+  { year: "2019", competition: "2019 第一屆智慧聯網專題實務競賽", section: "空間應用", rank: "金獎", project: "就視要簡單", team: "指導學生" },
+  { year: "2019", competition: "2019 第一屆智慧聯網專題實務競賽", section: "空間應用", rank: "銀獎", project: "視障者行走安全之智慧輔具聯網系統", team: "指導學生" },
+  { year: "2019", competition: "2019 第一屆智慧聯網專題實務競賽", section: "運輸組", rank: "佳作", project: "疲勞駕駛警示之異質性車內視聯網系統", team: "指導學生" },
+  { year: "2019", competition: "2019 育秀盃創意獎競賽", section: "工業設計", rank: "銀獎", project: "Panacea 治癒女神", team: "指導學生" },
+  { year: "2019", competition: "2019 育秀盃創意獎競賽", section: "工業設計", rank: "佳作", project: "Touch & Clean", team: "指導學生" },
+  { year: "2019", competition: "第十四屆數位訊號處理創思設計競賽", section: "健康照護", rank: "第三名", project: "基於深度學習之姿態辨識預警系統", team: "指導學生" },
+  { year: "2019", competition: "第十四屆數位訊號處理創思設計競賽", section: "物聯網組", rank: "佳作", project: "視障者藥物辨識輔具及其用藥安全平台", team: "指導學生" },
+
+  // --- 2018 ---
+  { year: "2018", competition: "2018經濟部技術處搶鮮大賽", section: "創新實作", rank: "季軍", project: "藥視能幫盲", team: "指導學生" },
+  { year: "2018", competition: "2018經濟部技術處搶鮮大賽", section: "創新實作", rank: "優選獎", project: "具疲勞瞌睡警示之行車安全系統", team: "指導學生" },
+  { year: "2018", competition: "2018 無限次元智慧醫療競賽", section: "醫療競賽", rank: "優勝獎", project: "Intelligent Scalp Detection System", team: "指導學生" },
+  { year: "2018", competition: "2018 Mobileheroes通訊大賽", section: "智慧聯網", rank: "校園菁英獎", project: "頑疲眼鏡", team: "指導學生" },
+  { year: "2018", competition: "南臺科技大學2018年來恩盃", section: "技術組", rank: "第一名", project: "具疲勞瞌睡警示之行車安全系統", team: "指導學生" },
+  { year: "2018", competition: "南臺科技大學2018年來恩盃", section: "技術組", rank: "第三名", project: "視障者藥物辨識輔具及雲端平台", team: "指導學生" },
+  { year: "2018", competition: "南臺科技大學2018年來恩盃", section: "創業組", rank: "第二名", project: "Intelligent Scalp Detection System", team: "指導學生" },
+  { year: "2018", competition: "南臺科技大學2018年來恩盃", section: "創業組", rank: "第三名", project: "智慧藥物辨識系統", team: "指導學生" },
+  { year: "2018", competition: "第23屆全國大專校院資訊創新競賽", section: "兩岸組", rank: "佳作", project: "智慧藥物辨識系統", team: "指導學生" },
+  { year: "2018", competition: "第23屆全國大專校院資訊創新競賽", section: "應用組", rank: "佳作", project: "智慧藥物辨識系統", team: "指導學生" },
+  { year: "2018", competition: "107全國微電腦應用系統設計創作競賽", section: "微電腦", rank: "第三名", project: "視障者藥物辨識輔具及其雲端平台", team: "指導學生" },
+  { year: "2018", competition: "107全國微電腦應用系統設計創作競賽", section: "微電腦", rank: "佳作獎", project: "疲勞駕駛警示系統", team: "指導學生" },
+  { year: "2018", competition: "2018台灣創新技術博覽會發明競賽", section: "專利組", rank: "銀牌獎", project: "頭皮檢測設備", team: "指導學生" },
+  { year: "2018", competition: "2018旭泰科技論文獎", section: "實作類", rank: "佳作", project: "主軸振動即時監測之物聯網系統應用", team: "指導學生" },
+  { year: "2018", competition: "第十八屆旺宏金矽獎", section: "應用組", rank: "銅獎", project: "基於深度學習技術之智慧藥物辨識系統", team: "指導學生" },
+  { year: "2018", competition: "2018 育秀盃創意獎競賽", section: "競賽組", rank: "佳作", project: "Yee起來幫盲", team: "指導學生" },
+  { year: "2018", competition: "第十三屆數位訊號處理創思設計競賽", section: "健康照護", rank: "第一名", project: "基於深度學習之智慧藥物辨識系統", team: "指導學生" },
+
+  // --- 2017 ---
+  { year: "2017", competition: "2017高雄國際發明暨設計展(KIDE)", section: "國際展", rank: "銀牌獎", project: "ElderlyAngle", team: "指導學生" },
+  { year: "2017", competition: "2017 Mobileheroes通訊大賽", section: "物聯網組", rank: "佳作", project: "視障者智慧輔具", team: "指導學生" },
+  { year: "2017", competition: "2017 Mobileheroes通訊大賽", section: "城市組", rank: "第三名", project: "智能頭皮檢測系統", team: "指導學生" },
+  { year: "2017", competition: "2017智慧聯網機器人創新設計大賽", section: "機器人組", rank: "冠軍", project: "iTape貨物自動化分流系統", team: "指導學生" },
+  { year: "2017", competition: "第22屆全國大專校院資訊創新競賽", section: "物聯網組", rank: "第一名", project: "智能頭皮檢測系統", team: "指導學生" },
+  { year: "2017", competition: "2017經濟部技術處搶鮮大賽", section: "創業類", rank: "冠軍", project: "智能頭皮檢測系統", team: "指導學生" },
+  { year: "2017", competition: "2017經濟部技術處搶鮮大賽", section: "實作類", rank: "冠軍", project: "Virtual Protector", team: "指導學生" },
+  { year: "2017", competition: "第十二屆數位訊號處理創思設計競賽", section: "健康照護", rank: "第一名", project: "具頭皮狀態自動辨識功能之檢測系統", team: "指導學生" },
+
+  // --- 2016 ---
+  { year: "2016", competition: "2016智慧電子應用設計競賽", section: "物聯網", rank: "金牌", project: "主軸醫生-高速主軸顫振分析系統", team: "指導學生" },
+  { year: "2016", competition: "2016車用電子創新發明競賽", section: "創新組", rank: "冠軍", project: "Intelligent Door", team: "指導學生" },
+  { year: "2016", competition: "2016車用電子創新發明競賽", section: "實作組", rank: "亞軍", project: "駕駛的天使之眼", team: "指導學生" },
+  { year: "2016", competition: "2016第21屆全國大專校院資訊創新競賽", section: "台達獎", rank: "第二名", project: "如影隨行智慧安全帽", team: "指導學生" },
+  { year: "2016", competition: "2016 第五屆中國創新創業大賽", section: "港澳臺賽", rank: "二等獎", project: "iTape物流配送即時監測與管理系統", team: "指導學生" },
+  { year: "2016", competition: "南臺科技大學2016校園創業競賽", section: "校園組", rank: "第一名", project: "iTape物流配送即時監測與管理系統", team: "指導學生" },
+  { year: "2016", competition: "第十一屆數位訊號處理創思設計競賽", section: "軟體組", rank: "佳作", project: "汽車的診斷醫生", team: "指導學生" }
 ];
 ---
 
 <Layout>
   <main class="mx-auto max-w-7xl px-6 py-24 md:py-32">
-    <!-- 麵包屑導覽 -->
     <nav class="mb-8 flex text-sm text-slate-400">
       <a href="/" class="transition hover:text-slate-900">首頁</a>
       <span class="mx-2">/</span>
       <span class="font-medium text-slate-900">獲獎紀錄</span>
     </nav>
 
-    <!-- 頁面標題區 -->
-    <header class="mb-16">
+    <header class="mb-16 text-center md:text-left">
       <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
         獲獎紀錄 <span class="text-amber-600 font-black italic tracking-tighter">Awards</span>
       </h1>
-      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500">
-        展示 ICPS Lab 師生歷年於國內外各項競賽與發明展之卓越表現，見證我們在技術研發上的創新成果與實力。
+      <p class="mt-6 max-w-3xl text-xl leading-relaxed text-slate-500 mx-auto md:mx-0">
+        指導學生之特殊榮譽。ICPS Lab 師生積極參與國內外競賽，將研究轉化為實際應用，成果橫跨智慧醫療、智慧工業與交通安全。
       </p>
     </header>
 
@@ -51,7 +192,7 @@ const allAwards = [
           <h2 class="text-lg font-bold text-slate-900">歷年榮譽</h2>
           <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Select Honor Year</p>
         </div>
-        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2015</span>
+        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2016</span>
       </div>
       
       <div class="relative rounded-full bg-slate-50 p-2 ring-1 ring-slate-200">
@@ -77,13 +218,12 @@ const allAwards = [
           class="award-item group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 md:p-10 transition-all duration-500 hover:border-amber-300 hover:shadow-2xl hover:shadow-amber-100/50" 
           data-year={award.year}
         >
-          <!-- 採用 Grid 嚴格劃分左右兩欄，保證對齊絕不跑版 -->
-          <div class="grid grid-cols-1 md:grid-cols-[130px_1fr] lg:grid-cols-[150px_1fr] gap-6 md:gap-10 items-start md:items-center">
+          <div class="grid grid-cols-1 md:grid-cols-[140px_1fr] lg:grid-cols-[160px_1fr] gap-6 md:gap-10 items-start md:items-center">
             
-            <!-- 左側大型勳章區塊 (固定寬度且強迫正方形) -->
-            <div class="flex flex-col items-center justify-center aspect-square w-28 md:w-full mx-auto md:mx-0 rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200/60 shadow-inner group-hover:from-amber-100 group-hover:to-amber-200/50 transition-colors">
+            <!-- 左側大型勳章區塊 -->
+            <div class="flex flex-col items-center justify-center aspect-square w-32 md:w-full mx-auto md:mx-0 rounded-2xl md:rounded-[2.5rem] bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200/60 shadow-inner group-hover:from-amber-100 group-hover:to-amber-200/50 transition-colors shrink-0 overflow-hidden p-2">
               <span class="text-[10px] font-black text-amber-600/80 uppercase tracking-widest mb-1 md:mb-2">Honor</span>
-              <span class="text-xl md:text-3xl font-black text-amber-950 text-center px-2 leading-tight break-words w-full">{award.rank}</span>
+              <span class="text-base md:text-xl lg:text-2xl font-black text-amber-950 text-center leading-tight break-words w-full px-1">{award.rank}</span>
             </div>
 
             <!-- 右側資訊內容 -->
@@ -92,7 +232,7 @@ const allAwards = [
                 <div class="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white font-mono text-xs font-bold shadow-md">
                   {award.year.slice(-2)}
                 </div>
-                <span class="text-xs font-black uppercase tracking-[0.1em] text-slate-500">{award.team}參賽榮譽</span>
+                <span class="text-xs font-black uppercase tracking-[0.1em] text-slate-500">{award.team}榮譽</span>
                 <span class="hidden md:block h-1 w-1 rounded-full bg-slate-300"></span>
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{award.section}</span>
               </div>
@@ -109,7 +249,7 @@ const allAwards = [
                   </div>
                   <div class="min-w-0">
                     <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">競賽名稱</p>
-                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base break-words">{award.competition}</p>
+                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base break-words">『{award.competition}』</p>
                   </div>
                 </div>
                 
@@ -126,7 +266,6 @@ const allAwards = [
             </div>
           </div>
           
-          <!-- 底部裝飾線 -->
           <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-amber-500 transition-all duration-700 group-hover:w-full"></div>
         </article>
       ))}
@@ -186,14 +325,10 @@ const allAwards = [
       yearBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
       btn.setAttribute('aria-selected', 'true');
       currentYear = btn.getAttribute('data-filter-year') || "2026";
-      
-      // 自動捲動到選中的年份
       btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      
       updateFilter();
     });
   });
 
-  // 初始化
   updateFilter();
 </script>

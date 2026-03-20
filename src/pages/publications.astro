@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// 定義年份範圍
-const years = Array.from({ length: 2026 - 2015 + 1 }, (_, i) => 2026 - i);
+// 定義年份範圍 (從 2026 延伸至 2016)
+const years = Array.from({ length: 2026 - 2016 + 1 }, (_, i) => 2026 - i);
 
 // 定義類別
 const categories = [
@@ -11,30 +11,149 @@ const categories = [
   { id: "dom-conference", label: "國內研討會論文", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
 ];
 
-// 論文資料陣列 (已整合您的 2026/2025 期刊與研討會論文)
+// 論文資料陣列
 const allPublications = [
-  // --- 2026 國際期刊 ---
+  // --- 2026 期刊 ---
   { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "ChainEcho: A Cascaded Audio-sensing Relay Framework for Indoor IoT Beacon Applications", authors: "Ming-Che Chen, Wun-Cian Lan, and Wan-Jung Chang", venue: "IEEE Canadian Journal of Electrical and Computer Engineering", details: "Feb. 2026. (SCIE) (Corresponding Author)" },
   { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Marking a New Phase of Growth: Highlights from the 2025 ICCE-Taiwan", authors: "Wan-Jung Chang and Liang-Bi Chen", venue: "IEEE Consumer Electronics Magazine", details: "Feb. 2026. (SCIE)" },
   { year: "2026", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Continuous Ag Nanolayer/Interior network Formation on PU Fibers via alkali-enhanced process for Conductive Stretchable Strain Sensors", authors: "Lien-Chiang Hung, Shiau-Wu Lai, Ming-Che Chen, Wan-Jung Chang, Yang-Kun Ou, and Ying-Nien Chou", venue: "ACS Applied Polymer Materials", details: "Jan. 2026. (SCIE)" },
-  
-  // --- 2025 國際期刊 ---
+
+  // --- 2026 研討會 ---
+  { year: "2026", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning", authors: "Wan-Jung Chang, Wei-Yuan Shih, Bo-Yun Tsai, and Jian-Ping Su", venue: "ICCT-Pacific 2026", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+  { year: "2026", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Stretchable AgNP/AgNW Co-Deposited Conductive Fiber with PDMS Encapsulation for Patellar Tendon Reflex Strain Sensing", authors: "Ying-Nien Chou, Po-Chun Huang, Kai-Sheng Hsieh, and Wan-Jung Chang", venue: "ICCT-Pacific 2026", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+  { year: "2026", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line", authors: "Wan-Jung Chang, Ping-Ying She, Chia-Yu Wu, and Jian-Ping Su", venue: "ICCT-Pacific 2026", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+
+  // --- 2025 期刊 ---
   { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Wearable Augmented Reality for Nystagmus Examination: A Feasibility Study in Vertigo Patients", authors: "Ching-Nung Wu, Ming-Che Chen, Chien-Yan Chien, Hsiang-Han Chang, Sheng-Dean Luo, Chung-Feng Hwang, and Wan-Jung Chang", venue: "Journal of Medical Internet Research (JMIR)", details: "vol. 27, pp. e75327, Nov. 2025. (SCIE), DOI10.2196/75327" },
   { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Smart Voiding Measurement: An AI And Thermal Imaging Solution For Home-Based Voiding Assessment", authors: "Yu-Chen Chen, Hao-Wei Chen, Yung-Shun Juan, and Wan-Jung Chang", venue: "The Journal of Urology", details: "vol. 213, no. 5S, pp. e855, May. 2025. (SCI), DOI10.1097/01.JU.0001110020.31695.bf.18" },
   { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "GaitMirror: Design and Implementation of an Artificial Intelligence-Based Gait Recognition System for Evaluating the Effectiveness of Lower Limb Rehabilitation", authors: "Ming-Che Chen, Jian-Ping Su, Yu-Lin Wang, Wan-Jung Chang", venue: "IEEE Sensors Journal", details: "vol. 25, no. 15, pp. 30118-30134, Aug. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3577995" },
   { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "BedEye: A Bed Exit and Bedside Fall Warning System Based on Skeleton Recognition Technology for Elderly Patients", authors: "Liang-Bi Chen, Wan-Jung Chang, and Tzu-Chin Yang", venue: "IEEE Access", details: "vol. 13, pp. 60403-60423, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/ACCESS.2025.3558004" },
   { year: "2025", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "SmartPD: An AI-Enhanced System for Optimizing Home-Based Continuous Ambulatory Peritoneal Dialysis", authors: "Ming-Che Chen, Ren-Guei Hsu, Hsin-Hsu Chou, Hsiag-Chun Chen, Jin-Yi Lin, Chi-Tze Lin, Neng-Yao You, Ming-Yi Li, Shu-Kai Li, Wei-Ren Zeng, Yang-Kun Ou, and Wan-Jung Chang", venue: "IEEE Sensors Journal", details: "vol. 25, no. 7, pp. 12303-12317, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3531893" },
 
-  // --- 2026 國際研討會 ---
-  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning", authors: "Wan-Jung Chang, Wei-Yuan Shih, Bo-Yun Tsai, and Jian-Ping Su", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
-  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "Stretchable AgNP/AgNW Co-Deposited Conductive Fiber with PDMS Encapsulation for Patellar Tendon Reflex Strain Sensing", authors: "Ying-Nien Chou, Po-Chun Huang, Kai-Sheng Hsieh, and Wan-Jung Chang", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
-  { year: "2026", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line", authors: "Wan-Jung Chang, Ping-Ying She, Chia-Yu Wu, and Jian-Ping Su", venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)", details: "Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026." },
+  // --- 2025 研討會 ---
+  { year: "2025", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "ToFPose: An Artificial Intelligence Human Skeleton Estimation Mechanism based on Two-Dimensional Time-of-Flight Imaging", authors: "Ting-Hsuan Hsu, Wan-Jung Chang", venue: "GCCE 2025", details: "Osaka, Japan, Sep. 23 – Sep. 26, 2025. (EI)" },
+  { year: "2025", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Augmented Reality-Based Nystagmus Detection System Utilizing Eye-Tracking Smart Glasses", authors: "Ming-Che Chen, Ching-Nung Wu, et al., Wan-Jung Chang", venue: "ICCE-TW 2025", details: "Kaohsiung, Taiwan, July 16-18, 2025." },
+  { year: "2025", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "FitMirror: an Artificial Intelligence Mirror System for Elderly Physical Fitness Diagnosis", authors: "Wan-Jung Chang, Bo-Hao Liao, et al.", venue: "ICCT-Pacific 2025", details: "Matsue, Japan, Mar. 29-31, 2025. (EI)" },
+  { year: "2025", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "ARIS: An Artificial-Intelligence-Based Automatic Recognition and Inventory System for Surgical Instruments in Operating Rooms", authors: "Wan-Jung Chang, Tzu-Chuan Hsu, et al.", venue: "ICCE 2025", details: "Las Vegas, USA, Jan. 11 – 14, 2025. (EI)" },
 
-  // --- 2025 國際研討會 ---
-  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "ToFPose: An Artificial Intelligence Human Skeleton Estimation Mechanism based on Two-Dimensional Time-of-Flight Imaging", authors: "Ting-Hsuan Hsu, Wan-Jung Chang", venue: "2025 IEEE The 14th Global Conference on Consumer Electronics (GCCE 2025)", details: "Osaka, Japan, Sep. 23 – Sep. 26, 2025. (EI)" },
-  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "An Augmented Reality-Based Nystagmus Detection System Utilizing Eye-Tracking Smart Glasses", authors: "Ming-Che Chen, Ching-Nung Wu, Chien-Yan Chien, Hsiang-Han Chang, Wan-Jung Chang", venue: "2025 IEEE International Conference on Consumer Electronic – Taiwan(ICCE-TW)", details: "Kaohsiung, Taiwan, July. 16-18, 2025." },
-  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "FitMirror: an Artificial Intelligence Mirror System for Elderly Physical Fitness Diagnosis", authors: "Wan-Jung Chang, Bo-Hao Liao, Chia-Fen Wang, Sheng-chieh Kang, Shao-jui Hung, Wei Cheng Huang", venue: "2025 1st International Conference on Consumer Technology (ICCT-Pacific)", details: "Matsue, Japan, Mar. 29-31, 2025. (EI)" },
-  { year: "2025", type: "int-conference", typeShort: "Conference", typeLabel: "國際研討會論文", title: "ARIS: An Artificial-Intelligence-Based Automatic Recognition and Inventory System for Surgical Instruments in Operating Rooms", authors: "Wan-Jung Chang, Tzu-Chuan Hsu, Liang-Bi Chen, Ming-Che Chen, Yi-Jia Chen, Bo-Hao Liao, Chen-Wei Yang, Yan-Cheng Chang, Zheng-Yan Lee, Hsiu-Yen Huang, Hui-Chien Hung", venue: "2025 IEEE International Conference on Consumer Electronics (ICCE 2025)", details: "Las Vegas, USA, Jan. 11 – 14, 2025. (EI)" }
+  // --- 2024 期刊 ---
+  { year: "2024", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "An Efficient Scalp Inspection and Diagnosis System Using Multiple Deep Learning-Based Modules", authors: "Liang-Bi Chen, Wan-Jung Chang, Yi-Chan Chiu, Xiang-Rui Huang", venue: "IEEE Canadian Journal of Electrical and Computer Engineering", details: "vol. 47, no. 1, 2024. (SCI, Q3) (Corresponding Author)" },
+
+  // --- 2024 研討會 ---
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Leveraging Large Language Models with Retrieval Augmented Generation for an Interactive Slide Presentation System", authors: "Ming-Che Chen, et al.", venue: "ICCE-Asia 2024", details: "Danang, Vietnam, Nov. 3 – Nov. 6, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "ThermalEye: A Low-Resolution Thermal-Imaging Based Artificial Intelligence Self-Harm Behavior Detection System", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2024", details: "Kokura, Japan, Oct. 29 – Nov. 1, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Abnormal Behavior Recognition System for Bathrooms with Using Toilet Based on Thermal Image AI Edge Computing", authors: "Wan-Jung Chang, Jia-Hong Liu, et al.", venue: "ICGEC-2024", details: "Miyazaki, Japan, Aug. 28 – 29, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Comparing Artificial Intelligence-Based versus Conventional Endotracheal Tube Monitoring Systems", authors: "Zu-Chun Lin, et al.", venue: "Nursing Informatics Conference", details: "Manchester, UK, July 28-31, 2024." },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Audio Frequency Modulation Wireless Communication-Based Access Control Management System", authors: "Ming-Che Chen, et al.", venue: "ICCE-TW 2024", details: "Taichung, Taiwan, July 9 – 11, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Unsupervised Machine Learning Scheme for Estimating Layer Thickness Ratio in Bilayer Thin Films", authors: "Ming-Che Chen, et al.", venue: "ICCE-TW 2024", details: "Taichung, Taiwan, July 9 – 11, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "EndoEye: A Marker-Based Artificial Intelligence Monitoring System for Endotracheal Tube Displacement", authors: "Hsiao-Chuen Chen, et al.", venue: "ICCE 2024", details: "Las Vegas, USA, Jan. 5 – 8, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A2FinPose: An Artificial Intelligence and Augmented Reality-Based Finger Gesture Recognition System", authors: "Wan-Jung Chang, et al.", venue: "ICCE 2024", details: "Las Vegas, USA, Jan. 5 – 8, 2024. (EI)" },
+  { year: "2024", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Gesture Control System Based on Augmented Reality and Eye Tracking for a 3D-Printed Prosthetic Arm", authors: "Ming-Che Chen, et al.", venue: "ICCE 2024", details: "Las Vegas, USA, Jan. 5 – 8, 2024. (EI)" },
+
+  // --- 2023 期刊 ---
+  { year: "2023", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "The Now and Future of ChatGPT and GPT in Psychiatry", authors: "Szu-Wei Cheng, et al.", venue: "Psychiatry and Clinical Neurosciences", details: "vol. 77, no. 11, Sep. 2023. (SCI, Q1)" },
+
+  // --- 2023 研討會 ---
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iDrugLabeling: A Computer Vision-Based Automatic Medicine Training Data Labeling System", authors: "Ming-Che Chen, et al.", venue: "GCCE 2023", details: "Nara, Japan, Oct. 10 – 13, 2023. (EI)" },
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A2Mirror: An Artificial Intelligent Mirror Therapy System Using Augmented Reality Smart Glasses", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2023", details: "Nara, Japan, Oct. 10 – 13, 2023. (EI)" },
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A2Fitness: An Artificial Intelligent Fitness Assistance System Using Augmented Reality Smart Glasses", authors: "Wan-Jung Chang, et al.", venue: "ICCE-TW 2023", details: "PingTung, Taiwan, July 17 – 19, 2023. (EI)" },
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iCAPD: A Deep Learning-Based Monitoring System for Continuous Ambulatory Peritoneal Dialysis", authors: "Ming-Che Chen, et al.", venue: "ICCE-TW 2023", details: "PingTung, Taiwan, July 17 – 19, 2023. (EI)" },
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iMirror: An Intelligent Gait Recognition Mirror for Rehabilitation of Patients with Parkinson’s Disease", authors: "Wan-Jung Chang, et al.", venue: "ICCE 2023", details: "Las Vegas, USA, Jan. 6 – 8, 2023. (EI)" },
+  { year: "2023", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A PCBA Solder Joint Defects Inspection System Based on Deep Learning Technology", authors: "Ming-Che Chen, et al.", venue: "ICCE 2023", details: "Las Vegas, USA, Jan. 6 – 8, 2023. (EI)" },
+
+  // --- 2022 研討會 ---
+  { year: "2022", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "ThermalPose: A Real-Time 2D Human Recogintion System Using Thermal Imaging", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2022", details: "Osaka, Japan, Oct. 18 – 21, 2022. (EI)" },
+  { year: "2022", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Hair Volume Diagnosis System Using Deep Learning and Image Processing Techniques", authors: "Ming-Che Chen, et al.", venue: "ICCE-TW 2022", details: "Taipei, Taiwan, July 6 – 8, 2022. (EI)" },
+  { year: "2022", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "The Effect of Board Games on the Cognitive Decline of Elders with Dementia: Evidence from EEG", authors: "Mai-Lun Chiu, et al.", venue: "ICCE-TW 2022", details: "Taipei, Taiwan, July 6 – 8, 2022. (EI)" },
+  { year: "2022", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Boosting Resnet18 for a Smart Glasses Input Module to Control a 3D Printed Prosthetic Arm", authors: "Aaron Raymond See, et al.", venue: "ICCE 2022", details: "Las Vegas, USA, Jan. 7 – 9, 2022. (EI)" },
+  { year: "2022", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iVoiding: A Thermal-Image based Artificial Intelligence Dynamic Voiding Detection System", authors: "Yu-Chen Chen, et al.", venue: "ICAIIC 2022", details: "Guam, USA, Feb. 21 – 24, 2022. (EI)" },
+
+  // --- 2021 期刊 ---
+  { year: "2021", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "iBuffet: An AIoT-Based Intelligent Calories Management System", authors: "Wan-Jung Chang, et al.", venue: "IEEE Transactions on Consumer Electronics", details: "Nov. 2021. (SCI)" },
+  { year: "2021", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "A Pose Estimation-based Fall Detection Methodology Using AI Edge Computing", authors: "Wan-Jung Chang, et al.", venue: "IEEE Access", details: "vol.9, 2021. (SCI)" },
+  { year: "2021", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "An AI Edge Computing-based Assistive System for Visually Impaired Pedestrian Safety", authors: "Wan-Jung Chang, et al.", venue: "IEEE Transactions on Consumer Electronics", details: "Feb. 2021. (SCI)" },
+
+  // --- 2021 研討會 ---
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "ElderFit: A Physical Fitness Motion Detection System for Older Adults Based on Deep Learning", authors: "Wan-Jung Chang, Jian-Ping Su", venue: "ISAT 2021", details: "Tokyo, Japan, Nov. 23 – 24, 2021." },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iFitness: A Deep Learning-Based Physical Fitness Motion Detection System for Elderly People", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2021", details: "Kyoto, Japan, Oct. 12 – 15, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Development of Artificial Intelligence Alert System for Bed Exit Detection and Fall Prevention", authors: "Ya-Ting Ke, et al.", venue: "ICMHI 2021", details: "Kyoto, Japan, May 14 – 16, 2021." },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Glass-based fluorescent immunobiosensor used for urea albumin fast detection", authors: "Lien-Chiang Hung, et al.", venue: "ICCE-TW 2021", details: "Penghu, Taiwan, June 16 – 18, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Interactive Modular System and Interface for Laerdal Little Anne™ Manikin in CPR Training", authors: "Yang-Kun Ou, et al.", venue: "ICCE-TW 2021", details: "Penghu, Taiwan, June 16 – 18, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Hair Volume Diagnosis System Using Deep Learning and Image Processing Techniques", authors: "Ming-Che Chen, et al.", venue: "ICCE-TW 2021", details: "Penghu, Taiwan, June 16 – 18, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Bed-Exit and Bedside Fall Warning System Based on Deep Learning Edge Computing", authors: "Wan-Jung Chang, et al.", venue: "LifeTech 2021", details: "Nara, Japan, Mar. 9 – 11, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iBuffet: A Deep Learning-Based Intelligent Calories Management System for Eating Buffet Meals", authors: "Wan-Jung Chang, et al.", venue: "ICCE 2021", details: "Las Vegas, USA, Jan. 10 – 12, 2021. (EI)" },
+  { year: "2021", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Fall Risk Prediction System Based on 3D Space Human Skeleton Torso Images", authors: "Wan-Jung Chang, et al.", venue: "ICCE 2021", details: "Las Vegas, USA, Jan. 10 – 12, 2021. (EI)" },
+
+  // --- 2020 期刊 ---
+  { year: "2020", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "ScalpEye: A Deep Learning-Based Scalp Hair Inspection and Diagnosis System", authors: "Wan-Jung Chang, et al.", venue: "IEEE Access", details: "July 2020. (SCI)" },
+  { year: "2020", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Design and Implementation of Intelligent Tape for Monitoring Cargo Shipments", authors: "Wan-Jung Chang, et al.", venue: "IEEE Sensors Journal", details: "Dec. 2020. (SCI)" },
+  { year: "2020", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Design and Implementation of an Intelligent Assistive System for Visually Impaired People", authors: "Wan-Jung Chang, et al.", venue: "IEEE Sensors Journal", details: "Apr. 2020. (SCI)" },
+  { year: "2020", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "MedGlasses: A Wearable Smart-Glasses-Based Drug Pill Recognition System", authors: "Wan-Jung Chang, et al.", venue: "IEEE Access", details: "Jan. 2020. (SCI)" },
+
+  // --- 2020 研討會 ---
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Deep Learning-Based Intelligent Anti-Collision System for Car Door", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2020", details: "Kobe, Japan, Oct. 13 – 16, 2020. (EI)" },
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Intelligent Maintenance and Repair Informing System for Solar Power Generation Equipment", authors: "Wan-Jung Chang, et al.", venue: "ICCE-TW 2020", details: "Taoyuan, Taiwan, Sep. 28 – 30, 2020. (EI)" },
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Wearable Devices-Based Home Sports Recording System for Health Management", authors: "Wan-Jung Chang, et al.", venue: "ICCE-TW 2020", details: "Taoyuan, Taiwan, Sep. 28 – 30, 2020. (EI)" },
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Mobile Device-Based Hairy Scalp Diagnosis System Using Deep Learning Techniques", authors: "Wan-Jung Chang, et al.", venue: "LifeTech 2020", details: "Kyoto, Japan, Mar. 10 – 12, 2020. (EI)" },
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Live Demonstration: An Intelligent Scalp Diagnosis System Using Deep Learning for Scalp Healthcare", authors: "Wan-Jung Chang, et al.", venue: "ISCAS 2020", details: "Seville, Spain (Virtual), Oct. 2020. (EI)" },
+  { year: "2020", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An AI Edge Computing Based Wearable Assistive Device for Visually Impaired People Zebra-Crossing", authors: "Wan-Jung Chang, et al.", venue: "ICCE 2020", details: "Las Vegas, USA, Jan. 4 – 6, 2020. (EI)" },
+
+  // --- 2019 期刊 ---
+  { year: "2019", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "DeepCrash: A Deep Learning-based IoV System for Accident Detection", authors: "Wan-Jung Chang, et al.", venue: "IEEE Access", details: "2019. (SCI)" },
+  { year: "2019", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "A Deep Learning-based Intelligent Medicine Recognition System for Chronic Patients", authors: "Wan-Jung Chang, et al.", venue: "IEEE Access", details: "March, 2019. (SCI)" },
+  { year: "2019", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Design and Implementation of an Intelligent Motorcycle Helmet", authors: "Wan-Jung Chang, Liang-Bi Chen", venue: "IEEE Sensors Journal", details: "May 2019. (SCI)" },
+
+  // --- 2019 研討會 ---
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "iCAP: An IoT-based Intelligent Liquid Waste Barrels Monitoring System", authors: "Wan-Jung Chang, et al.", venue: "CEEC 2019", details: "University of Essex, UK, Sept. 18 – 20, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "BodyTracker: A Deep Learning Based 3D Limb Trajectory Tracking System for Rehabilitation", authors: "Wan-Jung Chang, et al.", venue: "GCCE 2019", details: "Osaka, Japan, Oct. 15 – 18, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "AudioNet: An Audio Frequency Based Wireless Communication Scheme for WPANs", authors: "Wan-Jung Chang, et al.", venue: "ICCE-TW 2019", details: "Yilan, Taiwan, May 20 – 22, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A DC Power-Line Communication based In-Vehicle Safety Aided System", authors: "Sheng-Xiu Lin, et al.", venue: "LifeTech 2019", details: "Osaka, Japan, Mar. 12 – 14, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Deep Learning Based Wearable Medicines Recognition System for Visually Impaired People", authors: "Wan-Jung Chang, et al.", venue: "IEEE AICAS 2019", details: "Hsinchu, Taiwan, Mar. 18 – 20, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Deep Learning Facial Expression Recognition based Scoring System for Restaurants", authors: "Wan-Jung Chang, et al.", venue: "ICAIIC 2019", details: "Okinawa, Japan, Feb. 11 – 13, 2019. (EI)" },
+  { year: "2019", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Implementation of an Intelligent Assistance System for Visually Impaired/Blind People", authors: "Liang-Bi Chen, et al.", venue: "ICCE 2019", details: "Las Vegas, USA, Jan. 11 – 13, 2019. (EI)" },
+
+  // --- 2018 期刊 ---
+  { year: "2018", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Design and Implementation of a Drowsiness-Fatigue-Detection System", authors: "Wan-Jung Chang, et al.", venue: "IEEE Transactions on Consumer Electronics", details: "Nov. 2018. (SCI)" },
+  { year: "2018", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Development and Evaluation of Machine Learning Techniques for Scalp Detection", authors: "Wei-Chien Wang, et al.", venue: "Applied Sciences", details: "Jun. 2018. (SCI)" },
+
+  // --- 2018 研討會 ---
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Intelligent Scalp Inspection and Diagnosis System for Caring Hairy Scalp Health", authors: "Jian-Ping Su, et al.", venue: "GCCE 2018", details: "Nara, Japan, Oct. 9 – 12, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Deep Learning based IoV System for Traffic Accident Collisions Detection", authors: "Liang-Bi Chen, et al.", venue: "ICCE-Berlin 2018", details: "Berlin, Germany, Sept. 2 – 5, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Intelligent Scalp Detection System for Caring Hair Scalp Health", authors: "Jian-Ping Su, et al.", venue: "TJCAS 2018", details: "Taichung, Taiwan, Aug. 1 – 3, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "IoT Based Smart Logistics for Real Time Monitoring of Shipping Condition", authors: "Cheng-Hsin Chuang, et al.", venue: "ICMAEE 2018", details: "Chiang Mai, Thailand, July 7 – 9, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An In-Vehicle Infotainment Platform for Integrating Heterogeneous Networks", authors: "Ke-Yu Su, et al.", venue: "ICCE-TW 2018", details: "Taichung, Taiwan, May 19 – 21, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An IoT-based Elderly Behavioral Difference Warning System", authors: "Wu-Lin Chen, et al.", venue: "IEEE ICASI 2018", details: "Tokyo, Japan, May. 13 – 17, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Band-Pass IR Light Photodetector for Wearable Intelligent Glasses", authors: "Liang-Bi Chen, et al.", venue: "ICCE 2018", details: "Las Vegas, USA, Jan. 12 – 14, 2018. (EI)" },
+  { year: "2018", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "i-Helmet: An Intelligent Motorcycle Helmet for Rear Big Truck/Bus Intimation", authors: "Liang-Bi Chen, Jian-Ping Su", venue: "ICCE 2018", details: "Las Vegas, USA, Jan. 12 – 14, 2018. (EI)" },
+
+  // --- 2017 期刊 ---
+  { year: "2017", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "Real-time monitoring via patch-type piezoelectric force sensors", authors: "Cheng-Hsin Chuang, et al.", venue: "IEEE Sensors Journal", details: "Apr. 2017. (SCI)" },
+  { year: "2017", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "A Machine Vision Based AOI System for Measuring Drilling Quality", authors: "Wei-Chien Wang, et al.", venue: "IEEE Access", details: "May. 2017. (SCI)" },
+
+  // --- 2017 研討會 ---
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An FFT-based High-Speed Spindle Monitoring System for Analyzing Vibrations", authors: "Yu-Ching Mo, et al.", venue: "ICST 2017", details: "Sydney, Australia, Dec. 4 – 6, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Portable Wireless Scalp Inspector and its Automatic Diagnosis System", authors: "Liang-Bi Chen, et al.", venue: "ISAT-16", details: "Tokyo, Japan, Nov. 1 – 2, 2017." },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Implementation of an Automatic Adjustment Power Transfer Position Wireless Battery Charging", authors: "Yuan-Hua Zhang, et al.", venue: "GCCE 2017", details: "Nagoya, Japan, Oct. 24 – 27, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "An Implementation of an In-Vehicle Power Line Communication System", authors: "Yuan-Hua Zhang, et al.", venue: "GCCE 2017", details: "Nagoya, Japan, Oct. 24 – 27, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Cloud-based Monitoring and Analysis System for Diagnosing High-Speed Spindle Vibrations", authors: "Yu-Ching Mo, et al.", venue: "2017 ISNST", details: "Tainan, Taiwan, Oct. 19 – 20, 2017." },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Vehicular Diagnostic System based on LoRa LPWANs", authors: "Yu-Shang Chou, et al.", venue: "2017 ISNST", details: "Tainan, Taiwan, Oct. 19 – 20, 2017." },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Real-time IoT-based Cargos Monitoring & Management System for Intelligent Logistics", authors: "Jian-Ping Su, et al.", venue: "2017 ISNST", details: "Tainan, Taiwan, Oct. 19 – 20, 2017." },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Implementation of a Zigbee-based Wireless Router for Home Automation Systems", authors: "Yi-Chiao Wu, et al.", venue: "ICCE-TW 2017", details: "Taipei, Taiwan, June. 12 – 14, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Design of a Low-Cost Level-Triggered Zigbee Network Multi-Application Sensor", authors: "Wei-Hong Jhang, et al.", venue: "ISNE 2017", details: "Keelung, Taiwan, May. 23 – 25, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "i-Car System: A LoRa-based LPWANs Vehicle Diagnostic System for Driving Safety", authors: "Yu-Shang Chou, et al.", venue: "IEEE ICASI 2017", details: "Sapporo, Japan, May. 13 – 17, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "i-Logistics: An Intelligent Logistics System Based on Internet of Things", authors: "Jian-Ping Su, et al.", venue: "IEEE ICASI 2017", details: "Sapporo, Japan, May. 13 – 17, 2017. (EI)" },
+  { year: "2017", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Novel Hardware Architecture of CAN Applications", authors: "Hong-Yuan Li, et al.", venue: "ICCE 2017", details: "Las Vegas, USA, Jan. 8 – 11, 2017. (EI)" },
+
+  // --- 2016 期刊 ---
+  { year: "2016", type: "int-journal", typeShort: "Journal", typeLabel: "國際期刊論文", title: "WristEye: Wrist-Wearable Devices for Supporting Elderly Computer Learners", authors: "Liang-Bi Chen, et al.", venue: "IEEE Access", details: "Apr. 2016. (SCI)" },
+
+  // --- 2016 研討會 ---
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Wearable-Glasses-based Drowsiness-Fatigue-Detection System for Improving Road Safety", authors: "Liang-Bi Chen, et al.", venue: "GCCE 2016", details: "Kyoto, Japan, Oct. 11 – 14, 2016. (EI)" },
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Web-based online cooperation training materials for vocational school", authors: "Liang-Bi Chen, et al.", venue: "ICASI 2016", details: "Okinawa, Japan, May. 26 – 30, 2016." },
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Design and Development of an Extendable Multi-Protocol Automotive Gateway", authors: "Hong-Yuan Li, et al.", venue: "ICCE-TW 2016", details: "Nantou, Taiwan, May. 24 – 25, 2016. (EI)" },
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "Real-time monitoring via patch-type piezoelectric force sensors for logistics", authors: "Cheng-Hsin Chuang, et al.", venue: "IEEE-NEMS 2016", details: "Matsushima Bay, Japan, Apr. 17 – 20, 2016. (EI)" },
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Novel Scheme for Modeling and Analyzing of FlexRay Communication Systems", authors: "Wan-Jung Chang, Wei-Wen Hu", venue: "ICIT 2016", details: "Taipei, Taiwan, Mar. 14 – 17, 2016. (EI)" },
+  { year: "2016", type: "int-conference", typeShort: "Conf", typeLabel: "國際研討會論文", title: "A Real-Time Mobile Emergency Assistance System for Deaf-Mute People", authors: "Liang-Bi Chen, et al.", venue: "ICCE 2016", details: "Las Vegas, USA, Jan. 9 – 12, 2016. (EI)" }
 ];
 ---
 
@@ -47,7 +166,7 @@ const allPublications = [
       <span class="font-medium text-slate-900">重要著作</span>
     </nav>
 
-    <!-- 頁面標題區 -->
+    <!-- 頁面標題 -->
     <header class="mb-16">
       <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
         學術著作 <span class="text-sky-600 font-black italic tracking-tighter">Publications</span>
@@ -64,7 +183,7 @@ const allPublications = [
           <h2 class="text-lg font-bold text-slate-900">發表年份</h2>
           <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Select Publication Year</p>
         </div>
-        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2015</span>
+        <span class="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-md">2026 — 2016</span>
       </div>
       
       <div class="relative rounded-full bg-slate-50 p-2 ring-1 ring-slate-200">
@@ -79,7 +198,6 @@ const allPublications = [
             </button>
           ))}
         </div>
-        <div class="pointer-events-none absolute inset-y-0 right-1 w-12 bg-gradient-to-l from-slate-50 to-transparent md:hidden"></div>
       </div>
     </section>
 
@@ -90,7 +208,7 @@ const allPublications = [
         {categories.map((cat) => (
           <button
             data-filter-type={cat.id}
-            class="type-btn group relative flex items-center justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 aria-selected:border-slate-900 active:scale-[0.98]"
+            class="type-btn group relative flex items-center justify-between overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-6 transition-all duration-300 hover:border-slate-300 aria-selected:border-slate-900 active:scale-[0.98] aria-selected:bg-slate-900"
             aria-selected={cat.id === "int-journal" ? "true" : "false"}
           >
             <div class="flex items-center gap-4">
@@ -104,18 +222,12 @@ const allPublications = [
                 <span class="text-[10px] uppercase tracking-[0.1em] text-slate-400 font-semibold group-aria-selected:text-slate-400">Category</span>
               </div>
             </div>
-            
-            <div class="hidden group-aria-selected:block">
-               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-            </div>
           </button>
         ))}
       </div>
     </section>
 
-    <!-- 著作列表容器 (套用與 Awards 相同的防跑版 Grid 網格佈局) -->
+    <!-- 著作列表區容器 -->
     <div id="publications-list" class="grid gap-8">
       {allPublications.map((pub) => (
         <article 
@@ -123,24 +235,20 @@ const allPublications = [
           data-year={pub.year}
           data-type={pub.type}
         >
-          <!-- Grid 嚴格劃分左右兩欄 (防跑版核心) -->
           <div class="grid grid-cols-1 md:grid-cols-[130px_1fr] lg:grid-cols-[150px_1fr] gap-6 md:gap-10 items-start md:items-center">
-            
-            <!-- 左側大型勳章區塊 (固定正方形，絕不變形) -->
+            <!-- 年份標籤 -->
             <div class="flex flex-col items-center justify-center aspect-square w-28 md:w-full mx-auto md:mx-0 rounded-2xl md:rounded-[2rem] bg-gradient-to-br from-sky-50 to-sky-100/50 border border-sky-200/60 shadow-inner group-hover:from-sky-100 group-hover:to-sky-200/50 transition-colors shrink-0">
               <span class="text-[10px] font-black text-sky-600/80 uppercase tracking-widest mb-1 md:mb-2">{pub.typeShort}</span>
-              <span class="text-3xl md:text-4xl lg:text-5xl font-black text-sky-950 text-center px-2 leading-tight break-words w-full">{pub.year}</span>
+              <span class="text-3xl md:text-4xl lg:text-5xl font-black text-sky-950 text-center leading-tight">{pub.year}</span>
             </div>
 
-            <!-- 右側論文資訊內容 (min-w-0 強制換行防破版) -->
+            <!-- 論文資訊 -->
             <div class="min-w-0 w-full">
               <div class="flex flex-wrap items-center gap-3 mb-4 md:mb-5">
                 <div class="shrink-0 flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 text-white font-mono text-xs font-bold shadow-md">
                   {pub.year.slice(-2)}
                 </div>
                 <span class="text-xs font-black uppercase tracking-[0.1em] text-slate-500">{pub.typeLabel}</span>
-                <span class="hidden md:block h-1 w-1 rounded-full bg-slate-300"></span>
-                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">ICPS Lab Publication</span>
               </div>
 
               <p class="text-[10px] font-bold uppercase tracking-widest text-sky-600/70 mb-1.5">論文名稱 / Paper Title</p>
@@ -149,46 +257,40 @@ const allPublications = [
               </h3>
 
               <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 border-t border-slate-100 pt-6 md:pt-8">
-                <!-- 作者區塊 -->
-                <div class="flex items-start gap-3 md:gap-4">
-                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                <!-- 作者 -->
+                <div class="flex items-start gap-3">
+                  <div class="shrink-0 text-slate-400 pt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                   </div>
-                  <div class="min-w-0">
+                  <div>
                     <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">作者列表</p>
-                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base break-words">{pub.authors}</p>
+                    <p class="font-bold text-slate-800 leading-tight text-sm md:text-base">{pub.authors}</p>
                   </div>
                 </div>
                 
-                <!-- 發表出處區塊 -->
-                <div class="flex items-start gap-3 md:gap-4">
-                  <div class="shrink-0 flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-400 group-hover:bg-white group-hover:shadow-sm transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                <!-- 發表平台 -->
+                <div class="flex items-start gap-3">
+                  <div class="shrink-0 text-slate-400 pt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.168.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
                   </div>
-                  <div class="min-w-0">
+                  <div>
                     <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">發表期刊 / 研討會</p>
-                    <p class="font-bold text-slate-700 text-sm md:text-base break-words leading-tight italic">{pub.venue}</p>
-                    {pub.details && <p class="font-mono text-xs text-slate-500 mt-1 break-words">{pub.details}</p>}
+                    <p class="font-bold text-slate-700 text-sm md:text-base leading-tight italic">{pub.venue}</p>
+                    {pub.details && <p class="font-mono text-xs text-slate-500 mt-1">{pub.details}</p>}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <!-- 底部裝飾線 -->
+          <!-- 懸停飾條 -->
           <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-sky-500 transition-all duration-700 group-hover:w-full"></div>
         </article>
       ))}
 
-      <!-- 空狀態提示 -->
+      <!-- 空狀態 -->
       <div id="empty-state" class="hidden py-32 text-center rounded-[2rem] bg-slate-50 border-2 border-dashed border-slate-200">
-        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white text-slate-300 mb-4 shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-          </svg>
-        </div>
-        <p class="text-xl font-bold text-slate-700 tracking-tight">該分類尚無著作紀錄</p>
-        <p class="mt-2 text-slate-400 font-medium text-xs tracking-widest uppercase">Select another filter to explore</p>
+        <p class="text-xl font-bold text-slate-700">該年份 / 分類尚無著作紀錄</p>
+        <p class="mt-2 text-slate-400 text-sm">請嘗試選擇其他年度或類別</p>
       </div>
     </div>
   </main>
@@ -197,7 +299,7 @@ const allPublications = [
 <style>
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+  .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 
@@ -224,13 +326,11 @@ const allPublications = [
         item.classList.remove('animate-fade-in');
       }
     });
-
+    
     if (visibleCount === 0) {
       emptyState?.classList.remove('hidden');
-      emptyState?.classList.add('animate-fade-in');
     } else {
       emptyState?.classList.add('hidden');
-      emptyState?.classList.remove('animate-fade-in');
     }
   }
 
@@ -239,7 +339,6 @@ const allPublications = [
       yearBtns.forEach(b => b.setAttribute('aria-selected', 'false'));
       btn.setAttribute('aria-selected', 'true');
       currentYear = btn.getAttribute('data-filter-year') || "2026";
-      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       updateFilter();
     });
   });
@@ -253,5 +352,6 @@ const allPublications = [
     });
   });
 
+  // 初始執行
   updateFilter();
 </script>
