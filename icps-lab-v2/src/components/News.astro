@@ -1,0 +1,303 @@
+---
+// ==========================================
+// 🔹 最新消息資料區 (新增公告只需在這裡加入)
+// ==========================================
+const newsData = [
+  {
+    date: "2026.03.31",
+    tag: "學術發表",
+    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
+    title: "狂賀！實驗室大四同學赴日參加 2026 IEEE ICCT-Pacific 國際研討會，成功發表兩篇論文",
+    img: "/images/icct2026-group.jpg", // 替換為: 參加的同學與指導老師合照的照片
+    imgAlt: "實驗室師生於日本山口大學 ICCT-Pacific 2026 研討會現場合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        本實驗室大四專題生於 2026 年 3 月 29 日，前往日本山口大學（Yamaguchi University, Yoshida Campus, Yamaguchi, Japan），參加 <strong>2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)</strong> 國際研討會，並成功進行兩篇論文的口頭發表！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次發表的兩篇論文皆展現了實驗室在人工智慧與影像辨識技術上的扎實應用，從智慧農業的精準測量到智慧製造的自動化品質控管，深獲與會學者肯定。發表的兩篇論文題目與現場實況如下：
+      </p>
+
+      <div class="space-y-6">
+        <!-- 論文 1: PigView -->
+        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
+          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
+            📄 PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning
+          </h3>
+          <p class="text-slate-700 mb-4 text-sm">
+            本研究提出一套名為 PigView 的系統，利用人工智慧深度學習技術，透過最小邊界框來精準估測豬隻重量，期能為智慧農業帶來更高效、低接觸的飼養管理方案。
+          </p>
+          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
+            <!-- 替換為: PIGVIEW報告的現場照片 -->
+            <img src="/images/icct2026-pigview.jpg" alt="PigView 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
+            <span class="text-slate-500 font-medium z-0">[ PigView 報告現場照片 ]</span>
+          </div>
+        </div>
+
+        <!-- 論文 2: iNoodle -->
+        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
+          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
+            📄 iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line
+          </h3>
+          <p class="text-slate-700 mb-4 text-sm">
+            針對包裝乾麵生產線，團隊開發了 iNoodle 人工智慧調味包辨識系統，透過自動化影像辨識技術，提升生產線的品質控管與包裝效率，展現 AI 落地產線的實力。
+          </p>
+          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
+            <!-- 替換為: INOODEL報告的現場照片 -->
+            <img src="/images/icct2026-inoodle.jpg" alt="iNoodle 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
+            <span class="text-slate-500 font-medium z-0">[ iNoodle 報告現場照片 ]</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-6 text-slate-700">
+        這次遠赴日本參加國際研討會，對大四同學來說是非常難得且寶貴的經驗，不僅能將專題成果推向國際舞台，更能與各國學者進行學術交流，拓展國際視野。再次恭喜同學們順利完成發表！
+      </p>
+    `
+  },
+  {
+    date: "2026.03.15",
+    tag: "活動花絮",
+    tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
+    title: "實驗室慶功聚餐！狂賀「第21屆數位訊號處理創思設計競賽」榮獲一亞三佳作",
+    img: "/images/momo-paradise-dinner.jpg",
+    imgAlt: "ICPS Lab 實驗室成員於 MO-MO-PARADISE 慶功聚餐大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        為了慶祝實驗室團隊在「第21屆數位訊號處理創思設計競賽」中取得優異成績，張教授特別舉辦了慶功聚餐，慰勞大家這段時間備賽的辛勞！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        在此次競賽中，ICPS Lab 團隊展現了扎實的研發實力與創新思維，一舉斬獲了<strong>一個第二名（亞軍）</strong>以及<strong>三個佳作</strong>的亮眼殊榮。這份佳績不僅是對參賽同學們技術能力的肯定，更是實驗室全體成員互相支持、共同努力的成果。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border border-slate-200 bg-slate-50 rounded p-4 border-l-4 border-l-emerald-500">
+          <h3 class="font-semibold text-emerald-800 mb-2">🥩 歡聚壽喜燒：共享榮耀與傳承經驗</h3>
+          <p class="text-slate-700 mb-2">
+            賽後，大家帶著輕鬆愉快的心情一同前往 MO-MO-PARADISE 享用豐盛的壽喜燒。席間氣氛熱絡，參賽團隊熱情分享了從發想、實作到最終上場比賽的甘苦談與寶貴經驗。
+          </p>
+          <p class="text-slate-700">
+            這次的小聚餐不僅讓平時埋首於研究的大家得以放鬆身心，也讓實驗室成員間的感情更加緊密。吃飽喝足後，我們將帶著滿滿的動力回到實驗室，期許未來 ICPS Lab 能持續突破自我，在各項挑戰中再創佳績！
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.03.01",
+    tag: "系統公告",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "ICPS Lab 官方網站正式上線",
+    img: "/images/news-placeholder.jpg",
+    imgAlt: "實驗室大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本網站將作為實驗室對外資訊與交流平台，提供成員介紹與最新消息更新。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">📡 平台內容</h3>
+          <p class="text-slate-700">
+            提供實驗室成員資訊與最新動態，讓訪客能快速了解 ICPS Lab 的研究團隊與發展。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🧪 研究領域</h3>
+          <p class="text-slate-700">
+            涵蓋人工智慧物聯網（AIoT）、邊緣運算及智慧應用等相關研究方向。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">📢 後續更新</h3>
+          <p class="text-slate-700">
+            未來將持續於本站發布實驗室最新消息與相關資訊，歡迎定期關注。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.02.15",
+    tag: "招生資訊",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 ICPS Lab 研究團隊！",
+    img: "",
+    imgAlt: "",
+    content: `
+      <p class="text-base font-bold text-slate-900 mb-4">歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！</p>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
+        <p>在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、以及智慧製造與擴增實境 (AR) 協作系統。</p>
+      </div>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+          <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
+          <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
+          <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+          <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
+        </ul>
+      </div>
+      <div class="bg-blue-50 p-4 rounded border border-blue-100">
+        <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
+        <p>意者請將您的 <strong class="text-blue-700">1. 個人簡歷</strong>、<strong class="text-blue-700">2. 歷年成績單</strong> 與 <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 寄至張教授信箱： <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">allenchang@nkust.edu.tw</a></p>
+        <p class="text-xs text-slate-500 mt-2">※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！</p>
+      </div>
+    `
+  }
+];
+---
+
+<section id="news" class="scroll-mt-12">
+  <div class="border-b-2 border-slate-800 pb-3 mb-8 flex justify-between items-end">
+    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+      <div class="w-2 h-8 bg-blue-700"></div>
+      最新消息
+      <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">News & Announcements</span>
+    </h2>
+  </div>
+
+  <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
+    <ul id="news-list" class="divide-y divide-slate-100">
+      {newsData.map((item) => (
+        <li class="group news-item">
+          <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-4 md:w-56 shrink-0">
+                <span class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</span>
+                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+              </div>
+              <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">{item.title}</span>
+            </div>
+            <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          
+          <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
+                {item.img && (
+                  <div class="w-full max-w-3xl aspect-[1477/1108] bg-slate-100 rounded border border-slate-200 overflow-hidden flex items-center justify-center relative mt-2">
+                    <img src={item.img} alt={item.imgAlt} class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';" />
+                    <span class="text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
+                  </div>
+                )}
+                <div set:html={item.content}></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div id="pagination-controls" class="flex justify-center items-center mt-8 gap-2"></div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.news-toggle-btn');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('.toggle-icon');
+        const isExpanded = content.getAttribute('data-expanded') === 'true';
+
+        // 🟢 如果要展開當前項目，先收起所有其他已展開的項目
+        if (!isExpanded) {
+          const allExpanded = document.querySelectorAll('#news-list [data-expanded="true"]');
+          allExpanded.forEach(expandedContent => {
+            expandedContent.style.gridTemplateRows = '0fr';
+            expandedContent.setAttribute('data-expanded', 'false');
+            const expandedIcon = expandedContent.previousElementSibling.querySelector('.toggle-icon');
+            if (expandedIcon) expandedIcon.style.transform = 'rotate(0deg)';
+          });
+        }
+
+        // 切換當前項目的狀態
+        if (!isExpanded) {
+          content.style.gridTemplateRows = '1fr';
+          content.setAttribute('data-expanded', 'true');
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+          content.style.gridTemplateRows = '0fr';
+          content.setAttribute('data-expanded', 'false');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    const itemsPerPage = 5;
+    let currentPage = 1;
+    const newsItems = Array.from(document.querySelectorAll('.news-item'));
+    const paginationContainer = document.getElementById('pagination-controls');
+
+    function renderPagination() {
+      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+      if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+      const prevDisabled = currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+      html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>上一頁</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        const activeClass = i === currentPage ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
+        html += `<button onclick="window.changePage(${i})" class="w-8 h-8 flex items-center justify-center text-sm font-bold rounded border transition ${activeClass}">${i}</button>`;
+      }
+
+      const nextDisabled = currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+      html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>下一頁</button>`;
+
+      paginationContainer.innerHTML = html;
+    }
+
+    window.changePage = function(page, scrollToNews = true) {
+      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+      if (page < 1 || page > totalPages) return;
+      
+      currentPage = page;
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+
+      newsItems.forEach((item, index) => {
+        const content = item.querySelector('[data-expanded]');
+        const icon = item.querySelector('.toggle-icon');
+        
+        // 換頁時自動收合所有展開的項目
+        if(content && content.getAttribute('data-expanded') === 'true') {
+          content.style.gridTemplateRows = '0fr';
+          content.setAttribute('data-expanded', 'false');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+
+        if (index >= startIndex && index < endIndex) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      renderPagination();
+
+      if (scrollToNews) {
+        const newsSection = document.getElementById('news');
+        const elementPosition = newsSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    };
+
+    window.changePage(1, false);
+  });
+</script>
